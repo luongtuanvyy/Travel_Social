@@ -16,8 +16,8 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Voucher extends BaseEntity{
 
-    @Column(name = "SIZA")
-    private Integer siza;
+    @Column(name = "SIZE")
+    private Integer size;
 
     @Column(name = "PERCENT")
     private Integer percent;
