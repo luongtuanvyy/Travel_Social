@@ -1,6 +1,7 @@
 package com.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,6 +9,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
+import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 @Data
@@ -30,7 +32,7 @@ public class Users extends BaseEntity {
     private Boolean gender;
 
     @Column(name = "PROVIDER")
-    private Boolean provider;
+    private String provider;
 
     @Column(name = "PHONE")
     private String phone;

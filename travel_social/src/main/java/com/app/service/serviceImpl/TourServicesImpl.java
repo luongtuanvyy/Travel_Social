@@ -57,7 +57,7 @@ public class TourServicesImpl implements TourServices {
         if (image != null) {
             CloudinaryResponse cloudinaryResponse = cloudinaryService.uploadFile(image, "tour");
             tour.setCloudinaryId(cloudinaryResponse.getCloudinaryId());
-            tour.setImg(cloudinaryResponse.getUrl());
+            tour.setImage(cloudinaryResponse.getUrl());
         }
         tour = tourRepository.save(tour);
         return new SuccessAPIResponse(tour);
@@ -76,7 +76,7 @@ public class TourServicesImpl implements TourServices {
             cloudinaryService.deleteFile(tour.getCloudinaryId());
             CloudinaryResponse cloudinaryResponse = cloudinaryService.uploadFile(image, "tour");
             tour.setCloudinaryId(cloudinaryResponse.getCloudinaryId());
-            tour.setImg(cloudinaryResponse.getUrl());
+            tour.setImage(cloudinaryResponse.getUrl());
         }
         tour = tourRepository.save(tour);
         return new SuccessAPIResponse(tour);

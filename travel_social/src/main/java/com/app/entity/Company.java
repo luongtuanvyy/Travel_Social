@@ -22,7 +22,7 @@ public class Company extends BaseEntity {
     @Column(name = "HOTLINE")
     private  String hotline;
 
-    @Column(name = "DECRIPTION")
+    @Column(name = "DESCRIPTION")
     private  String description;
 
     @Column(name = "AVATAR")

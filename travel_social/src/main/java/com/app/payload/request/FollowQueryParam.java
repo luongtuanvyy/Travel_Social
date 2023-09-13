@@ -6,8 +6,8 @@ import java.time.LocalDateTime;
 
 @Data
 @Builder
-public class FollowQueryParam {
+public class FollowQueryParam extends BaseQueryRequest{
     Integer id;
 
-    LocalDateTime follow_time;
+    LocalDateTime followtime;
 }

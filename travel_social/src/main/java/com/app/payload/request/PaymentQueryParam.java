@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class PaymentQueryParam {
+public class PaymentQueryParam extends BaseQueryRequest{
     Integer id;
 
     String name;

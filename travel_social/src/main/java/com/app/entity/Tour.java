@@ -18,17 +18,14 @@ public class Tour extends BaseEntity{
     @Column(name = "PRICE")
     private BigDecimal price;
 
-    @Column(name = "VEHICAL")
-    private  String vehical;
-
     @Column(name = "DEPATURE")
     private  String depature;
 
     @Column(name = "DESCRIPTION")
     private  String description;
 
-    @Column(name = "IMG")
-    private  String img;
+    @Column(name = "IMAGE")
+    private  String image;
 
     @Column(name = "cloudinary_id")
     private String cloudinaryId;
@@ -42,8 +39,8 @@ public class Tour extends BaseEntity{
     @Column(name = "SIZE")
     private Integer size;
 
-    @Column(name = "REGISTERED")
-    private Integer REGISTERED;
+    @Column(name = "REGISTED")
+    private Integer registed;
 
     @JsonIgnore
     @ManyToOne

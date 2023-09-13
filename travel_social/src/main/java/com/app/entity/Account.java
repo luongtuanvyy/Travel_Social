@@ -26,12 +26,4 @@ public class Account extends BaseEntity {
     @Column(name = "ROLE")
     private String role;
 
-    @JsonIgnore
-    @OneToOne(mappedBy = "account",fetch = FetchType.LAZY)
-    Users user;
-
-    @JsonIgnore
-    @OneToOne(mappedBy = "account")
-    Company company;
-
 }

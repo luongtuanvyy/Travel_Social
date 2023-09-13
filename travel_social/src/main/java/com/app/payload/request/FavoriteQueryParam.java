@@ -2,12 +2,13 @@ package com.app.payload.request;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.Date;
+import java.time.LocalDateTime;
+
 
 @Data
 @Builder
-public class FavoriteQueryParam {
+public class FavoriteQueryParam extends BaseQueryRequest{
     Integer id;
 
-    Date favorite_time;
+    LocalDateTime favorite_time;
 }

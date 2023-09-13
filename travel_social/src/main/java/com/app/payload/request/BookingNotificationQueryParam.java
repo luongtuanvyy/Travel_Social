@@ -6,7 +6,7 @@ import java.security.Timestamp;
 
 @Data
 @Builder
-public class BookingNotificationQueryParam {
+public class BookingNotificationQueryParam extends BaseQueryRequest{
     Integer id;
 
     Timestamp create_time;

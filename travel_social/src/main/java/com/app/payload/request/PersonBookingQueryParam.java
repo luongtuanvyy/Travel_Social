@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class PersonBookingQueryParam {
+public class PersonBookingQueryParam extends BaseQueryRequest{
     Integer id;
 
     String fullname;

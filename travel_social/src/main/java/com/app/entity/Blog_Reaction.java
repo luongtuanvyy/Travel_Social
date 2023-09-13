@@ -10,8 +10,8 @@ import java.sql.Timestamp;
 @Table(name = "BLOG_REACTION")
 public class Blog_Reaction extends BaseEntity  {
 
-    @Column(name = "LIKES")
-    private  Boolean likes;
+    @Column(name = "LIKE")
+    private  Boolean like;
 
     @Column(name = "SHARE")
     private  Boolean share;

@@ -12,7 +12,7 @@ public class Place extends BaseEntity{
     @Column(name = "NAME")
     private  String name;
 
-    @Column(name = "DECRIPTION")
+    @Column(name = "DESCRIPTION")
     private  String description;
 
     @Column(name = "IMAGE")
