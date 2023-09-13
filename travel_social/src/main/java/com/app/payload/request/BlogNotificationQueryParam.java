@@ -7,7 +7,7 @@ import java.security.Timestamp;
 
 @Data
 @Builder
-public class BlogNotificationQueryParam {
+public class BlogNotificationQueryParam extends BaseQueryRequest{
     Integer id;
 
     Timestamp create_time;

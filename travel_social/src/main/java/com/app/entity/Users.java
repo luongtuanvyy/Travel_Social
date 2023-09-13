@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.jpa.convert.threeten.Jsr310JpaConverters;
 
 import java.time.LocalDateTime;
 
@@ -46,11 +47,14 @@ public class Users extends BaseEntity {
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
 
-    @Column
-    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
-    private LocalDateTime birth_day;
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-     @JoinColumn(name = "Account_ID" )
+    @Column(name = "BIRTHDAY")
+    @Convert(converter = Jsr310JpaConverters.LocalDateTimeConverter.class)
+    private LocalDateTime birthday;
+
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "ACCOUNT_ID" )
     Account account;
+
 
 }

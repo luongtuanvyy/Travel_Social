@@ -15,9 +15,6 @@ public class Place extends BaseEntity{
     @Column(name = "DECRIPTION")
     private  String description;
 
-    @Column(name = "PLACE_ADDRESS")
-    private  String place_address;
-
     @Column(name = "IMAGE")
     private String image;
 
