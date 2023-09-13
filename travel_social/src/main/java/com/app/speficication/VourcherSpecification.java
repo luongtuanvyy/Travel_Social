@@ -6,7 +6,9 @@ import com.app.entity.Voucher;
 import com.app.payload.request.TourQueryParam;
 import com.app.payload.request.VoucherQueryParam;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
+@Component
 public class VourcherSpecification {
 
     public Specification<Voucher> hasPercentEqual(Integer percent) {

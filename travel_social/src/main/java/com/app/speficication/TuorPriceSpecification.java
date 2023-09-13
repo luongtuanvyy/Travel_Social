@@ -3,6 +3,7 @@ package com.app.speficication;
 import com.app.entity.TourPrice;
 import com.app.entity.View;
 import com.app.payload.request.TourGuideQueryParam;
+import com.app.payload.request.TourPriceQueryParam;
 import com.app.payload.request.ViewQueryParam;
 import org.springframework.data.jpa.domain.Specification;
 
@@ -12,10 +13,10 @@ public class TuorPriceSpecification {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), id);
     }
 
-    public Specification<TourPrice> getVoucherSpecification(TourGuideQueryParam tourGuideQueryParam) {
+    public Specification<TourPrice> getSpecification(TourPriceQueryParam tuorPriceQueryParam) {
         Specification<TourPrice> spec = Specification.where(null);
-        if (tourGuideQueryParam.getId() != null) {
-            spec = spec.and(hasIdEqual(tourGuideQueryParam.getId()));
+        if (tuorPriceQueryParam.getId() != null) {
+            spec = spec.and(hasIdEqual(tuorPriceQueryParam.getId()));
         }
 
         return spec;

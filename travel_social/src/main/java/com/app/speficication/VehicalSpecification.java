@@ -6,9 +6,10 @@ import com.app.payload.request.VehicalQueryParam;
 import com.app.payload.request.ViewQueryParam;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
-@Service
+@Component
 public class VehicalSpecification {
 
     public Specification<Vehical> hasIdEqual(Integer id) {

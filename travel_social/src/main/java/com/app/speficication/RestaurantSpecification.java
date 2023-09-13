@@ -1,11 +1,11 @@
 package com.app.speficication;
 
 import com.app.entity.Restaurant;
-import com.app.entity.TourPrice;
 import com.app.payload.request.RestaurantQueryParam;
-import com.app.payload.request.TourGuideQueryParam;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RestaurantSpecification {
     public Specification<Restaurant> hasIdEqual(Integer id) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), id);

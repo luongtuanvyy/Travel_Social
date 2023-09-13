@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 import java.time.LocalDateTime;
 
 @Component
-public class FovoriteSpecification {
+public class FavoriteSpecification {
     public Specification<Favorite> hasNameLike(LocalDateTime favorite_time) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("favorite_time"), favorite_time);
     }

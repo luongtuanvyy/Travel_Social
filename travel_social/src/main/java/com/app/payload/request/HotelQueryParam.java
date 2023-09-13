@@ -5,6 +5,9 @@ import lombok.Data;
 @Data
 @Builder
 public class HotelQueryParam extends BaseQueryRequest{
+
+    Integer id;
+
     String name;
 
     String address;
