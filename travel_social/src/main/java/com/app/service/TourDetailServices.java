@@ -4,4 +4,5 @@ import com.app.payload.request.TourDetailQueryParam;
 import com.app.payload.response.APIResponse;
 
 public interface TourDetailServices {
+    APIResponse filterTourDetail(TourDetailQueryParam tourDetailQueryParam);
 }
