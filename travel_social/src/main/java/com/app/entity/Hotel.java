@@ -44,4 +44,7 @@ public class Hotel extends BaseEntity{
 
     @Column(name = "ACTIVE")
     private  Boolean active;
+
+    @Column(name = "DESCRIPTION")
+    private  String description;
 }

@@ -17,7 +17,7 @@ public class BlogApi {
     @Autowired
     BlogServices blogServices;
 
-    @GetMapping("/user/blogs/filter")
+    @GetMapping("/blogs/filter")
     public ResponseEntity<?> getAllBlog (BlogQueryParam blogQueryParam) {
         return ResponseEntity.ok(blogServices.filterBlog(blogQueryParam));
     }

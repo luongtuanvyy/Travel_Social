@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @Entity
-@Table(name = "VDEHICAL")
+@Table(name = "VEHICAL")
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
@@ -44,4 +44,8 @@ public class Vehical extends BaseEntity{
 
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
 }
+

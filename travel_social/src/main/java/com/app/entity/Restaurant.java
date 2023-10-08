@@ -35,4 +35,16 @@ public class Restaurant extends BaseEntity{
 
     @Column(name = "ACTIVE")
     private  Boolean active;
+
+    @Column(name = "HOTLINE")
+    private  String hotline;
+
+    @Column(name = "TYPE")
+    private  String type;
+
+    @Column(name = "DESCRIPTION")
+    private  String description;
+
+    @Column(name = "RATING")
+    private  Float rating;
 }

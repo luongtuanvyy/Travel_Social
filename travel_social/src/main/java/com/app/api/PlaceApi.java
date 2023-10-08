@@ -16,7 +16,7 @@ public class PlaceApi {
     @Autowired
     PlaceServices placeServices;
 
-    @GetMapping("/user/places")
+    @GetMapping("/places")
     public ResponseEntity<?> filter(PlaceQueryParam placeQueryParam) {
         return ResponseEntity.ok(placeServices.filterPlace(placeQueryParam));
     }

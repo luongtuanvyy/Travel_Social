@@ -25,6 +25,10 @@ public class PersonBooking extends BaseEntity{
 
     @Column(name = "GENDER")
     private  Boolean gender;
+
+    @Column(name = "RELATIONSHIP")
+    private  String relationship;
+
     @OneToOne
     @JoinColumn(name = "id")
     private PersonBooking personBooking;
