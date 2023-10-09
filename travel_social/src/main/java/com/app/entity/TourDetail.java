@@ -43,7 +43,7 @@ public class TourDetail extends BaseEntity{
     private Hotel hotel;
 
     @ManyToOne
-    @JoinColumn(name = "RÉTAURANT_ID")
+    @JoinColumn(name = "RESTAURANT_ID")
     private Restaurant restaurant;
 
     @ManyToOne

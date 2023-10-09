@@ -54,6 +54,6 @@ public class Tour extends BaseEntity{
 
     @JsonIgnore
     @ManyToOne
-    @JoinColumn(name = "COMPANY_ID", nullable = false)
-    private Company company;
+    @JoinColumn(name = "ACCOUNT_ID", nullable = false)
+    private Account account;
 }

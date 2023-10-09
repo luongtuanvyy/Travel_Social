@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Data
 @Entity
 @Table(name = "ACCOUNT")
@@ -14,16 +16,60 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class Account extends BaseEntity {
-    @Column(name = "USERNAME" )
-    private String user_name;
 
-    @Column(name = "PASSWORD" )
+    @Column(name = "ACCOUNTNAME")
+    private String accountname;
+
+    @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "LOGIN_TYPE" )
-    private String login_type;
+    @Column(name = "LOGIN_TYPE")
+    private String loginType;
 
     @Column(name = "ROLE")
     private String role;
+
+    @Column(name = "ACCOUNT_TYPE")
+    private String accountType;
+
+    @Column(name = "NAME")
+    private String name;
+
+    @Column(name = "ADDRESS")
+    private String address;
+
+    @Column(name = "EMAIL")
+    private String email;
+
+    @Column(name = "VIP")
+    private boolean vip;
+
+    @Column(name = "HOTLINE")
+    private String hotline;
+
+    @Column(name = "DESCRIPTION")
+    private String description;
+
+    @Column(name = "AVATAR")
+    private String avatar;
+
+    @Column(name = "CLOUDINARY_ID")
+    private String cloudinaryId;
+
+    @Column(name = "FIRST_NAME")
+    private String firstName;
+
+    @Column(name = "LAST_NAME")
+    private String lastName;
+
+    @Column(name = "GENDER")
+    private boolean gender;
+
+    @Column(name = "BIRTHDAY")
+    private Date birthday;
+
+    @Column(name = "ACCOUNT_ID")
+    private int accountId;
+
 
 }

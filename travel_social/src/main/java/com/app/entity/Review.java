@@ -11,23 +11,20 @@ import java.time.LocalDateTime;
 public class Review extends BaseEntity{
 
     @Column(name = "RATING")
-    private  Float rating;
-
-    @Column(name = "COMMENT")
-    private  String comment;
+    private Float rating;
 
     @Column(name = "REVIEW_DATE")
-    private LocalDateTime review_date;
+    private LocalDateTime reviewDate;
 
     @Column(name = "IMAGE")
     private String image;
 
-    @Column(name = "cloudinary_id")
+    @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private Users user;
+    @JoinColumn(name = "ACCOUNT_ID")
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID")

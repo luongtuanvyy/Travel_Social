@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -15,12 +16,12 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 public class BookingNotification extends BaseEntity{
-    @Column(name = "NOTIFICATION_TYPE")
-    private  String notification_type;
 
+    @Column(name = "NOTIFICATION_TYPE")
+    private String notificationType;
 
     @Column(name = "CREATE_TIME")
-    private Timestamp create_time;
+    private LocalTime createTime;
 
     @ManyToOne
     @JoinColumn(name = "BOOKING_ID")

@@ -15,36 +15,22 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class Restaurant extends BaseEntity{
-    @Column(name = "ADDRESS")
-    private  String address;
 
     @Column(name = "NAME")
-    private  String name;
+    private String name;
 
     @Column(name = "WEBSITE")
-    private  String website;
+    private String website;
 
     @Column(name = "VERIFY")
-    private  Boolean verify;
+    private boolean verify;
+
+    @Column(name = "ADDRESS")
+    private String address;
 
     @Column(name = "IMAGE")
-    private  String image;
+    private String image;
 
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
-
-    @Column(name = "ACTIVE")
-    private  Boolean active;
-
-    @Column(name = "HOTLINE")
-    private  String hotline;
-
-    @Column(name = "TYPE")
-    private  String type;
-
-    @Column(name = "DESCRIPTION")
-    private  String description;
-
-    @Column(name = "RATING")
-    private  Float rating;
 }
