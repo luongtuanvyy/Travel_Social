@@ -8,9 +8,11 @@ import org.springframework.context.annotation.Configuration;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Logger;
 
 @Configuration
 public class CloudinaryConfig {
+
     @Autowired
     CloudinaryProperties cloudinaryProperties;
 
