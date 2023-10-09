@@ -16,21 +16,21 @@ import java.util.Date;
 @Builder
 @AllArgsConstructor
 public class PersonBooking extends BaseEntity{
-    @Column(name = "FULLNAME")
-    private  String fullname;
+    @ManyToOne
+    @JoinColumn(name = "BOOKING_ID")
+    private Booking booking;
 
-    @Temporal(TemporalType.DATE)
+    @Column(name = "FULLNAME")
+    private String fullname;
+
     @Column(name = "BIRTHDAY")
     private Date birthday;
 
     @Column(name = "GENDER")
-    private  Boolean gender;
+    private boolean gender;
 
     @Column(name = "RELATIONSHIP")
-    private  String relationship;
+    private String relationship;
 
-    @OneToOne
-    @JoinColumn(name = "id")
-    private PersonBooking personBooking;
 
 }

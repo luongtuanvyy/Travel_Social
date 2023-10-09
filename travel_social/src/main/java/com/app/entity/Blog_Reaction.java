@@ -10,23 +10,15 @@ import java.sql.Timestamp;
 @Table(name = "BLOG_REACTION")
 public class Blog_Reaction extends BaseEntity  {
 
-    @Column(name = "LIKE")
-    private  Boolean like;
+
+    @Column(name = "REACTION_LIKE")
+    private boolean reactionLike;
 
     @Column(name = "SHARE")
-    private  Boolean share;
+    private boolean share;
 
-    @Column(name = "COMMENT")
-    private  String comment;
-
-    @Column(name = "TIME_LIKE")
-    private Timestamp time_like;
-
-    @Column(name = "TIME_SHARE")
-    private Timestamp time_share;
-
-    @Column(name = "TIME_COMMENT")
-    private Timestamp time_comment;
+    @Column(name = "COMMENT", length = 255)
+    private String comment;
 
     @ManyToOne
     @JoinColumn(name = "BLOG_ID", nullable = false)

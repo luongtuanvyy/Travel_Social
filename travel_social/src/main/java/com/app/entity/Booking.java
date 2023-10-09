@@ -11,13 +11,10 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "BOOKING")
 public class Booking  extends BaseEntity {
-    @Column(name = "BOOKING_DATE")
-    private Timestamp booking_date;
+    @Column(name = "BOOKING_TIME")
+    private Timestamp bookingTime;
 
-    @Column(name = "STATUS")
-    private String status;
-
-    @Column(name = "NOTE")
+    @Column(name = "NOTE", length = 255)
     private String note;
 
     @Column(name = "ADULT")
@@ -29,21 +26,18 @@ public class Booking  extends BaseEntity {
     @Column(name = "BABY")
     private Integer baby;
 
-    @Column(name = "TOTAL_PRICE")
-    private BigDecimal total_price;
-
     @Column(name = "QR")
     private String qr;
 
-    @Column(name = "CLOUDINARY_ID")
-    private String cloudinaryId;
+    @Column(name = "TOTAL_PRICE")
+    private BigDecimal totalPrice;
 
-    @Column(name = "ACTIVE")
-    private String active;
+    @Column(name = "STATUS")
+    private String status;
 
     @ManyToOne
-    @JoinColumn(name = "USER_ID")
-    private Users user;
+    @JoinColumn(name = "ACCOUNT_ID")
+    private Account account;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID")

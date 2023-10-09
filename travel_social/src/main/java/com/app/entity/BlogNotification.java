@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Timestamp;
+import java.time.LocalTime;
 
 @Data
 @Entity
@@ -15,16 +16,19 @@ import java.sql.Timestamp;
 @Builder
 @AllArgsConstructor
 public class BlogNotification extends BaseEntity{
-    @Column(name = "NOTIFICATION_TYPE")
-    private  String notification_type;
 
+    @Column(name = "POST_ID")
+    private Integer postId;
+
+    @Column(name = "NOTIFICATION_TYPE")
+    private String notificationType;
 
     @Column(name = "CREATE_TIME")
-    private Timestamp create_time;
+    private LocalTime createTime;
 
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users user;
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "id")
+    private Account account;
 
 
 }

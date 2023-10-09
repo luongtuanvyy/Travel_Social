@@ -10,10 +10,25 @@ import lombok.Data;
 @Table(name = "PLACE")
 public class Place extends BaseEntity{
     @Column(name = "NAME")
-    private  String name;
+    private String name;
+
+    @Column(name = "ADDRESS")
+    private String address;
 
     @Column(name = "DESCRIPTION")
-    private  String description;
+    private String description;
+
+    @Column(name = "WEBSITE")
+    private String website;
+
+    @Column(name = "HOTLINE")
+    private String hotline;
+
+    @Column(name = "VERIFY")
+    private boolean verify;
+
+    @Column(name = "TYPE")
+    private String type;
 
     @Column(name = "IMAGE")
     private String image;
@@ -21,18 +36,5 @@ public class Place extends BaseEntity{
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
 
-    @Column(name = "ADDRESS")
-    private String address;
 
-    @Column(name = "HOTLINE")
-    private String hotline;
-
-    @Column(name = "VERIFY")
-    private Boolean verify;
-
-    @Column(name = "TYPE")
-    private String type;
-
-    @Column(name = "ACTIVE")
-    private Boolean active;
 }

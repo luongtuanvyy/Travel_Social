@@ -16,20 +16,17 @@ import java.sql.Timestamp;
 @AllArgsConstructor
 public class Voucher extends BaseEntity{
 
+    @Column(name = "TIME_START")
+    private Timestamp timeStart;
+
+    @Column(name = "TIME_END")
+    private Timestamp timeEnd;
+
     @Column(name = "SIZE")
     private Integer size;
 
     @Column(name = "PERCENT")
     private Integer percent;
-
-    @Column(name = "TIME_START")
-    private Timestamp time_start;
-
-    @Column(name = "TIME_END")
-    private Timestamp time_end;
-
-    @Column(name = "ACTIVE")
-    private Boolean active;
 
     @ManyToOne
     @JoinColumn(name = "tour_id")

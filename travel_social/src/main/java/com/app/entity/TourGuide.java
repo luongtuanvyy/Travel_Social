@@ -14,31 +14,22 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TourGuide extends BaseEntity{
     @Column(name = "FULLNAME")
-    private  String fullname;
+    private String fullname;
 
     @Column(name = "GENDER")
-    private  Boolean gender;
-
-    @Column(name = "EMAIL")
-    private  String email;
-
-    @Column(name = "PHONE")
-    private  String phone;
+    private boolean gender;
 
     @Column(name = "AVATAR")
-    private  String avatar;
+    private String avatar;
 
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
-
-    @Column(name = "ACTIVE")
-    private  Boolean active;
 
     @ManyToOne
     @JoinColumn(name = "tour_id", referencedColumnName = "id")
     private Tour tour;
 
     @ManyToOne
-    @JoinColumn(name = "company_id", referencedColumnName = "id")
-    private Company company;
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "id")
+    private Account account;
 }

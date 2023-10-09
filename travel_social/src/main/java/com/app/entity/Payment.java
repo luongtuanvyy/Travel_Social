@@ -12,6 +12,4 @@ public class Payment extends BaseEntity {
     @Column(name = "NAME")
     private  String name;
 
-    @Column(name = "ACTIVE")
-    private  Boolean active;
 }

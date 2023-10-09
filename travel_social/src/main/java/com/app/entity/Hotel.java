@@ -15,36 +15,28 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 public class Hotel extends BaseEntity{
-    @Column(name = "ADDRESS")
-    private  String address;
 
-    @Column(name = "NAME")
-    private  String name;
+    @Column(name = "ADDRESS")
+    private String address;
 
     @Column(name = "ROOM")
-    private Integer room;
+    private int room;
 
     @Column(name = "HOTLINE")
-    private  String hotline;
+    private String hotline;
 
     @Column(name = "VERIFY")
-    private  Boolean verify;
+    private boolean verify;
 
     @Column(name = "TYPE")
-    private  String type;
+    private String type;
 
     @Column(name = "RATING")
-    private  Float rating;
+    private float rating;
 
     @Column(name = "IMAGE")
-    private  String image;
+    private String image;
 
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
-
-    @Column(name = "ACTIVE")
-    private  Boolean active;
-
-    @Column(name = "DESCRIPTION")
-    private  String description;
 }
