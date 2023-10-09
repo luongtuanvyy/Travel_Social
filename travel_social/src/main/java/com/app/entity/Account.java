@@ -2,19 +2,18 @@ package com.app.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 
-@Data
+
 @Entity
 @Table(name = "ACCOUNT")
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
+@Getter
+@Setter
 public class Account extends BaseEntity {
 
     @Column(name = "ACCOUNTNAME")
@@ -68,8 +67,13 @@ public class Account extends BaseEntity {
     @Column(name = "BIRTHDAY")
     private Date birthday;
 
-    @Column(name = "ACCOUNT_ID")
-    private int accountId;
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "USER_ID" )
+    Users users;
 
-
+    @OneToOne
+    @JsonIgnore
+    @JoinColumn(name = "COMPANY_ID" )
+    Company company;
 }

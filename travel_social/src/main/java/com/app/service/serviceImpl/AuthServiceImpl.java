@@ -55,13 +55,13 @@ public class AuthServiceImpl implements AuthService {
             String token =tokenProvider.generateToken(acc);
 
             String refreshtoken = tokenProvider.genarateRefershTolen(acc);
-            Object object = new Object();
-            if(acc.getUser() == null){
-                object = accountMapper.accountCompanyDto(acc);
-            }else{
-                object = accountMapper.accountUserDto(acc);
-            }
-            AuthResponse authResponse = new AuthResponse(token,refreshtoken ,object);
+//            Object object = new Object();
+//            if(acc.getUsers() == null){
+//                object = accountMapper.accountCompanyDto(acc);
+//            }else{
+//                object = accountMapper.accountUserDto(acc);
+//            }
+            AuthResponse authResponse = new AuthResponse(token,refreshtoken ,acc);
         return APIResponse.builder().message("Success").success(true).data(authResponse).build();
         }catch (Exception e){
             e.printStackTrace();
@@ -71,7 +71,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public APIResponse register(RegistrationRequest registrationRequest) {
-        Account exists =  accountServices.findByUsername(registrationRequest.getAccount().getUser_name()).orElse(null);
+        Account exists =  accountServices.findByUsername(registrationRequest.getAccount().getAccountname()).orElse(null);
         Users usercheck = userServices.findByEmail(registrationRequest.getUsers().getEmail()).orElse(null);
         if(exists != null){
             return APIResponse.builder().message("Username is exists").success(false).build();
@@ -80,7 +80,7 @@ public class AuthServiceImpl implements AuthService {
             return APIResponse.builder().message("Email is exists").success(false).build();
         }
         registrationRequest.getAccount().setPassword(passwordEncoder.encode(registrationRequest.getAccount().getPassword()));
-        registrationRequest.getAccount().setUser(registrationRequest.getUsers());
+        registrationRequest.getAccount().setUsers(registrationRequest.getUsers());
         registrationRequest.getUsers().setAccount(registrationRequest.getAccount());
         Account regisacc = registrationRequest.getAccount();
         Users regisuser = registrationRequest.getUsers();
@@ -96,7 +96,7 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public APIResponse register(Account account, MultipartFile file) {
-        Account exists =  accountServices.findByUsername(account.getUser_name()).orElse(null);
+        Account exists =  accountServices.findByUsername(account.getAccountname()).orElse(null);
         if(exists != null){
             return APIResponse.builder().message("Email is exists").success(false).build();
         }

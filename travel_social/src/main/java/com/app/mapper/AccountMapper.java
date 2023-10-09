@@ -20,13 +20,13 @@ public class AccountMapper {
         if (typeMap == null) {
             modelMapper.createTypeMap(Account.class, AccountUserDto.class)
                     .addMappings(mapper -> {
-                        mapper.map(Account::getUser_name, AccountUserDto::setUser_name);
+                        mapper.map(Account::getAccountname, AccountUserDto::setUser_name);
 
-                        mapper.map(src -> src.getUser().getEmail(), AccountUserDto::setEmail);
-                        mapper.map(src -> src.getUser().getGender(), AccountUserDto::setGender);
-                        mapper.map(src -> src.getUser().getPhone_number(), AccountUserDto::setPhone_number);
-                        mapper.map(src -> src.getUser().getAvatar(), AccountUserDto::setAvatar);
-                        mapper.map(src -> src.getUser().getBirth_day(), AccountUserDto::setBirth_day);
+                        mapper.map(src -> src.getUsers().getEmail(), AccountUserDto::setEmail);
+                        mapper.map(src -> src.getUsers().getGender(), AccountUserDto::setGender);
+                        mapper.map(src -> src.getUsers().getPhone(), AccountUserDto::setPhone_number);
+                        mapper.map(src -> src.getUsers().getAvatar(), AccountUserDto::setAvatar);
+                        mapper.map(src -> src.getUsers().getBirthday(), AccountUserDto::setBirth_day);
                         mapper.map(Account::getRole, AccountUserDto::setRole);
                     });}else{
             typeMap.map(account);
@@ -41,7 +41,7 @@ public class AccountMapper {
         if (typeMap == null) {
             modelMapper.createTypeMap(Account.class, AccountCompanyDto.class)
                     .addMappings(mapper -> {
-                        mapper.map(Account::getUser_name, AccountCompanyDto::setUser_name);
+                        mapper.map(Account::getAccountname, AccountCompanyDto::setUser_name);
                         mapper.map(Account::getRole, AccountCompanyDto::setRole);
                         mapper.map(src -> src.getCompany().getName(), AccountCompanyDto::setName);
                         mapper.map(src -> src.getCompany().getVIP(), AccountCompanyDto::setVip);

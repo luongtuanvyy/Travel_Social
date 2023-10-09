@@ -66,22 +66,18 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable());
-        http.authorizeRequests(auth -> auth.requestMatchers("/api/login",  "/api/login1",   "api/logout",  "api/register"
+        http.authorizeRequests(auth ->  auth.requestMatchers("/api/login",  "/api/login1",
+                                "api/logout", "api/register"
                         ,"/"
                         ,"/error"
                         , "/favicon.ico",
                         "/api/**"
 //                        , "/**/*.png"
-//                        ,"/**/*.gif",
-//                        "/**/*.svg",
-//                        "/**/*.jpg",
-//                        "/**/*.html",
-//                        "/**/*.css",
-//                        "/**/*.js"
                 ).permitAll()
-                        .requestMatchers("/api/company/**").hasRole("COMPANY")
-                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/api/user/**").hasAnyRole("USER","ADMIN","COMPANY")
+                        .requestMatchers("/user/**").hasRole("USER")
+                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/company/**").hasRole("COMPANY")
+                        .requestMatchers("/user/**").hasAnyRole("USER","ADMIN","COMPANY")
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler()))

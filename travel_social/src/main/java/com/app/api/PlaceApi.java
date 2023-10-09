@@ -11,7 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 //@CrossOrigin("*")
-@RequestMapping("/api")
+//@RequestMapping("/api/admin")
 public class PlaceApi {
     @Autowired
     PlaceServices placeServices;
