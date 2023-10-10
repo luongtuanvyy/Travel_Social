@@ -1,6 +1,5 @@
 package com.app.repository;
 
-import com.app.entity.Users;
 import com.app.entity.Voucher;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

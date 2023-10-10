@@ -18,10 +18,11 @@ public class AccountServicesImpl implements AccountServices {
         return accountRepository.findAll();
     }
 
-    @Override
-    public Optional<Account> findByUsername(String username) {
-        return accountRepository.findByUser_name(username);
-    }
+
+//    @Override
+//    public Optional<Account> findByUsername(String username) {
+//        return accountRepository.findByUser_name(username);
+//    }
 
     @Override
     public Optional<Account> findById(Integer id) {

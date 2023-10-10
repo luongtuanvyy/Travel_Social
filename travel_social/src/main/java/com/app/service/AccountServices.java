@@ -7,7 +7,6 @@ import java.util.Optional;
 
 public interface AccountServices {
     List<Account> findAll();
-    Optional<Account> findByUsername(String username);
     Optional<Account> findById(Integer id);
     Account save (Account account);
 

@@ -25,8 +25,8 @@ public class Favorite extends BaseEntity{
     @Column(name = "FAVORITE_TIME")
     private Date favorite_time;
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users user;
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "id")
+    private Account  account;
 
     @ManyToOne
     @JoinColumn(name = "tour_id", referencedColumnName = "id")
