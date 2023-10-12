@@ -10,7 +10,13 @@ import java.util.Optional;
 
 @Repository
 public interface AccountRepository extends JpaRepository<Account, Integer> {
+ /*   để im đừng xóa
     @Query("select o from Account o where o.accountname = :username")
-    Optional<Account> findByUser_name(@Param("username") String username);
+   Optional<Account> findByAccountname(@Param("username") String username);
+   **/
+    Optional<Account> findByAccountname(String Accountname);
+
+    Optional<Account> findByEmail(String Email);
+
 }
 

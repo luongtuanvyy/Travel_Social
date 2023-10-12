@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Repository
 public interface BlogRepository extends JpaRepository<Blog, Integer> {
-//    Optional<Blog> findByTitle(String title);
+
 
 //    @EntityGraph("graph.product")
     Page<Blog> findAll(Specification<Blog> spec, Pageable pageable);

@@ -16,8 +16,8 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class View extends BaseEntity{
     @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private Users users;
+    @JoinColumn(name = "ACCOUNT_ID", referencedColumnName = "id")
+    private Account account;
     @ManyToOne
     @JoinColumn(name = "blog_id", referencedColumnName = "id")
     private Blog blog;

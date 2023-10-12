@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import com.app.type.ERole;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
@@ -26,7 +27,7 @@ public class Account extends BaseEntity {
     private String loginType;
 
     @Column(name = "ROLE")
-    private String role;
+    private ERole role;
 
     @Column(name = "ACCOUNT_TYPE")
     private String accountType;
@@ -66,14 +67,4 @@ public class Account extends BaseEntity {
 
     @Column(name = "BIRTHDAY")
     private Date birthday;
-
-    @OneToOne
-    @JsonIgnore
-    @JoinColumn(name = "USER_ID" )
-    Users users;
-
-    @OneToOne
-    @JsonIgnore
-    @JoinColumn(name = "COMPANY_ID" )
-    Company company;
 }

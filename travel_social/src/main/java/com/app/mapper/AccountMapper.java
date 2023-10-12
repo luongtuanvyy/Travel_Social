@@ -22,11 +22,11 @@ public class AccountMapper {
                     .addMappings(mapper -> {
                         mapper.map(Account::getAccountname, AccountUserDto::setUser_name);
 
-                        mapper.map(src -> src.getUsers().getEmail(), AccountUserDto::setEmail);
-                        mapper.map(src -> src.getUsers().getGender(), AccountUserDto::setGender);
-                        mapper.map(src -> src.getUsers().getPhone(), AccountUserDto::setPhone_number);
-                        mapper.map(src -> src.getUsers().getAvatar(), AccountUserDto::setAvatar);
-                        mapper.map(src -> src.getUsers().getBirthday(), AccountUserDto::setBirth_day);
+                        mapper.map(src -> src.getEmail(), AccountUserDto::setEmail);
+                        mapper.map(src -> src.isGender(), AccountUserDto::setGender);
+                        mapper.map(src -> src.getHotline(), AccountUserDto::setPhone_number);
+                        mapper.map(src -> src.getAvatar(), AccountUserDto::setAvatar);
+                        mapper.map(src -> src.getBirthday(), AccountUserDto::setBirth_day);
                         mapper.map(Account::getRole, AccountUserDto::setRole);
                     });}else{
             typeMap.map(account);
@@ -43,12 +43,12 @@ public class AccountMapper {
                     .addMappings(mapper -> {
                         mapper.map(Account::getAccountname, AccountCompanyDto::setUser_name);
                         mapper.map(Account::getRole, AccountCompanyDto::setRole);
-                        mapper.map(src -> src.getCompany().getName(), AccountCompanyDto::setName);
-                        mapper.map(src -> src.getCompany().getVIP(), AccountCompanyDto::setVip);
-                        mapper.map(src -> src.getCompany().getAddress(), AccountCompanyDto::setAddress);
-                        mapper.map(src -> src.getCompany().getEmail(), AccountCompanyDto::setEmail);
+                        mapper.map(src -> src.getName(), AccountCompanyDto::setName);
+                        mapper.map(src -> src.getAddress(), AccountCompanyDto::setAddress);
+                        mapper.map(src -> src.getEmail(), AccountCompanyDto::setEmail);
+                        mapper.map(src -> src.isVip(), AccountCompanyDto :: setVip);
 
-                        mapper.map(src -> src.getCompany().getDescription(), AccountCompanyDto::setDecription);
+                        mapper.map(src -> src.getDescription(), AccountCompanyDto::setDecription);
                     });}
         AccountCompanyDto accountCompanyDto = new AccountCompanyDto();
         accountCompanyDto =modelMapper.map(account, AccountCompanyDto.class);

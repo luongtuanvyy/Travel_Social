@@ -16,7 +16,7 @@ public class UserDetailServices implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         System.out.println("uusername "+ username);
-        Account account =accountServices.findByUsername(username).orElseThrow(()->{
+        Account account =accountServices.findByAccountName(username).orElseThrow(()->{
             throw new UsernameNotFoundException("Can not find this account");
         });
         return UserDetail.creat(account);

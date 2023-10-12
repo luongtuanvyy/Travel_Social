@@ -2,7 +2,6 @@ package com.app.service.serviceImpl;
 
 import com.app.entity.Account;
 import com.app.entity.UserDetail;
-import com.app.entity.Users;
 import com.app.mapper.AccountMapper;
 import com.app.payload.request.AuthenticationRequest;
 import com.app.payload.request.RegistrationRequest;
@@ -12,8 +11,6 @@ import com.app.payload.response.CloudinaryResponse;
 import com.app.security.TokenProvider;
 import com.app.service.AccountServices;
 import com.app.service.AuthService;
-import com.app.service.CompanyServices;
-import com.app.service.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -36,10 +33,6 @@ public class AuthServiceImpl implements AuthService {
     @Autowired
     CloudinaryService cloudinaryService;
     @Autowired
-    UserServices userServices;
-    @Autowired
-    CompanyServices companyServices;
-    @Autowired
     AccountMapper accountMapper;
     @Override
     public APIResponse login(AuthenticationRequest authenticationRequest) {
@@ -48,7 +41,7 @@ public class AuthServiceImpl implements AuthService {
                 new UsernamePasswordAuthenticationToken(authenticationRequest.getUsername(),authenticationRequest.getPassword())
             );
             SecurityContextHolder.getContext().setAuthentication(authentication);
-            Account acc = accountServices.findByUsername(authenticationRequest.getUsername()).orElse(null);
+            Account acc = accountServices.findByAccountName(authenticationRequest.getUsername()).orElse(null);
             if(acc == null){
                 return APIResponse.builder().message("Username or password is incorrect").success(false).build();
             }
@@ -71,40 +64,31 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public APIResponse register(RegistrationRequest registrationRequest) {
-        Account exists =  accountServices.findByUsername(registrationRequest.getAccount().getAccountname()).orElse(null);
-        Users usercheck = userServices.findByEmail(registrationRequest.getUsers().getEmail()).orElse(null);
+        Account exists =  accountServices.findByAccountName(registrationRequest.getAccount().getAccountname()).orElse(null);
         if(exists != null){
             return APIResponse.builder().message("Username is exists").success(false).build();
         }
-        if(usercheck != null ){
+        if(exists.getEmail().equals(registrationRequest.getAccount().getEmail())){
             return APIResponse.builder().message("Email is exists").success(false).build();
         }
         registrationRequest.getAccount().setPassword(passwordEncoder.encode(registrationRequest.getAccount().getPassword()));
-        registrationRequest.getAccount().setUsers(registrationRequest.getUsers());
-        registrationRequest.getUsers().setAccount(registrationRequest.getAccount());
-        Account regisacc = registrationRequest.getAccount();
-        Users regisuser = registrationRequest.getUsers();
 
-        userServices.save(regisuser);
-        accountServices.save(regisacc);
-//        Users usserceck = userServices.findByEmail(regisuser.getEmail()).get();
-//        usserceck.setAccount(regisacc);
-//        userServices.save(regisuser);
+        accountServices.save(registrationRequest.getAccount());
         return APIResponse.builder().message("Register successfully!").success(true).data(registrationRequest).build();
     }
 
 
     @Override
     public APIResponse register(Account account, MultipartFile file) {
-        Account exists =  accountServices.findByUsername(account.getAccountname()).orElse(null);
+        Account exists =  accountServices.findByAccountName(account.getAccountname()).orElse(null);
         if(exists != null){
             return APIResponse.builder().message("Email is exists").success(false).build();
         }
         CloudinaryResponse response = cloudinaryService.uploadFile(file, "User");
         String encoderPassword = passwordEncoder.encode(account.getPassword());
         account.setPassword(encoderPassword);
-//        account.setCloudinaryId(response.getCloudinaryId());
-//        account.setAvatar(response.getUrl());
+        account.setCloudinaryId(response.getCloudinaryId());
+        account.setAvatar(response.getUrl());
         accountServices.save(account);
         return APIResponse.builder().message("Register successfully!").success(true).build();
     }
