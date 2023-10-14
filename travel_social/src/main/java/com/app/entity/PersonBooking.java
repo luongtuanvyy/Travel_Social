@@ -3,34 +3,27 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 
-@Data
 @Entity
 @Table(name = "PERSON_BOOKING")
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class PersonBooking extends BaseEntity{
-    @ManyToOne
-    @JoinColumn(name = "BOOKING_ID")
-    private Booking booking;
-
-    @Column(name = "FULLNAME")
-    private String fullname;
-
-    @Column(name = "BIRTHDAY")
+@Builder
+@Getter
+@Setter
+public class PersonBooking extends BaseEntity {
+    private String fullName;
     private Date birthday;
-
-    @Column(name = "GENDER")
     private boolean gender;
-
-    @Column(name = "RELATIONSHIP")
     private String relationship;
 
+    @ManyToOne
+    @JoinColumn(name = "BOOKING_ID", referencedColumnName = "ID")
+    private Booking bookingId;
 
 }
