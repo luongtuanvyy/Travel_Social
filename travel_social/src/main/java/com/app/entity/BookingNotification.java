@@ -3,27 +3,31 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.sql.Timestamp;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "BOOKING_NOTIFICATION")
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class BookingNotification extends BaseEntity{
+@Builder
+@Getter
+@Setter
+public class BookingNotification {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
     @Column(name = "NOTIFICATION_TYPE")
     private String notificationType;
 
     @Column(name = "CREATE_TIME")
-    private LocalTime createTime;
+    private LocalDateTime createTime;
 
     @ManyToOne
-    @JoinColumn(name = "BOOKING_ID")
-    private Booking booking;
+    @JoinColumn(name = "BOOKING_ID", referencedColumnName = "ID")
+    private Booking bookingId;
 }

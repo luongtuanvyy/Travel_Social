@@ -1,5 +1,6 @@
 package com.app.service.serviceImpl;
-import com.app.entity.Vehical;
+
+import com.app.entity.Vehicle;
 import com.app.entity.View;
 import com.app.payload.request.ViewQueryParam;
 import com.app.payload.response.APIResponse;
@@ -25,6 +26,7 @@ public class ViewServicesImpl implements ViewServices {
 
     @Autowired
     RequestParamsUtils requestParamsUtils;
+
     @Override
     public APIResponse filterView(ViewQueryParam viewQueryParam) {
         Specification<View> spec = viewSpecification.getViewSpecification(viewQueryParam);

@@ -5,32 +5,22 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "RESTAURANT")
 @NoArgsConstructor
 @Builder
 @AllArgsConstructor
-public class Restaurant extends BaseEntity{
-
-    @Column(name = "NAME")
+public class Restaurant extends BaseEntity {
     private String name;
-
-    @Column(name = "WEBSITE")
     private String website;
-
-    @Column(name = "VERIFY")
-    private boolean verify;
-
-    @Column(name = "ADDRESS")
     private String address;
-
-    @Column(name = "IMAGE")
     private String image;
-
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
 }

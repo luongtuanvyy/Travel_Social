@@ -1,51 +1,38 @@
 package com.app.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
-@Data
 @Entity
 @Table(name = "BOOKING")
-public class Booking  extends BaseEntity {
-    @Column(name = "BOOKING_TIME")
-    private Timestamp bookingTime;
-
-    @Column(name = "NOTE", length = 255)
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+public class Booking extends BaseEntity {
     private String note;
-
-    @Column(name = "ADULT")
     private Integer adult;
-
-    @Column(name = "CHILDREN")
     private Integer children;
-
-    @Column(name = "BABY")
     private Integer baby;
-
-    @Column(name = "QR")
     private String qr;
+    private String status;
 
     @Column(name = "TOTAL_PRICE")
     private BigDecimal totalPrice;
 
-    @Column(name = "STATUS")
-    private String status;
+    @ManyToOne
+    @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
+    private Tour tourId;
 
     @ManyToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "TOUR_ID")
-    private Tour tour;
-
-    @ManyToOne
-    @JoinColumn(name = "PAY_ID")
-    private Payment payment;
-
-
+    @JoinColumn(name = "PAYMENT_ID", referencedColumnName = "ID")
+    private Payment paymentId;
 }

@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-TravelSocialApplication<travel_social>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.app.TravelSocialApplication",
+            "projectName": "travel_social",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

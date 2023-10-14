@@ -3,38 +3,27 @@ package com.app.entity;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
 @Entity
 @Table(name = "PLACE")
-public class Place extends BaseEntity{
-    @Column(name = "NAME")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+public class Place extends BaseEntity {
     private String name;
-
-    @Column(name = "ADDRESS")
     private String address;
-
-    @Column(name = "DESCRIPTION")
     private String description;
-
-    @Column(name = "WEBSITE")
     private String website;
-
-    @Column(name = "HOTLINE")
     private String hotline;
-
-    @Column(name = "VERIFY")
-    private boolean verify;
-
-    @Column(name = "TYPE")
     private String type;
-
-    @Column(name = "IMAGE")
     private String image;
-
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
-
-
 }

@@ -1,7 +1,7 @@
 package com.app.service.serviceImpl;
 
 import com.app.entity.TourGuide;
-import com.app.entity.Vehical;
+import com.app.entity.Vehicle;
 import com.app.payload.request.TourGuideQueryParam;
 import com.app.payload.request.TourPriceQueryParam;
 import com.app.payload.request.VehicalQueryParam;

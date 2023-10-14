@@ -3,50 +3,44 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 
-@Data
 @Entity
 @Table(name = "TOUR_DETAIL")
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class TourDetail extends BaseEntity{
-    @Column(name = "DESCRIPTION")
-    private  String description;
+@Builder
+@Getter
+@Setter
+public class TourDetail {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-    @Column(name = "ACTIVE")
-    private  Boolean active;
-
-    @Temporal(TemporalType.DATE)
-    @Column(name = "DATES")
-    private Date dates;
-
-    @Temporal(TemporalType.TIME)
-    @Column(name = "TIMES")
-    private Date times;
+    private String description;
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "id")
-    private Tour tour;
+    private Tour tourId;
 
     @ManyToOne
     @JoinColumn(name = "PLACE_ID", referencedColumnName = "id")
-    private Place place;
+    private Place placeId;
 
     @ManyToOne
-    @JoinColumn(name = "HOTEL_ID")
-    private Hotel hotel;
+    @JoinColumn(name = "HOTEL_ID", referencedColumnName = "id")
+    private Hotel hotelId;
 
     @ManyToOne
-    @JoinColumn(name = "RESTAURANT_ID")
-    private Restaurant restaurant;
+    @JoinColumn(name = "RESTAURANT_ID", referencedColumnName = "id")
+    private Restaurant restaurantId;
 
     @ManyToOne
-    @JoinColumn(name = "VEHICAL_ID")
-    private Vehical vehicle;
+    @JoinColumn(name = "VEHICLE_ID", referencedColumnName = "id")
+    private Vehicle vehicleId;
 }

@@ -3,26 +3,20 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-
-@Data
 @Entity
-@Table(name = "Like")
+@Table(name = "Likes")
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class Like extends BaseEntity{
-    @ManyToOne
-    @JoinColumn(name = "account_id", referencedColumnName = "id")
-    private Account account;
+@Builder
+@Getter
+@Setter
+public class Like extends BaseEntity {
 
     @ManyToOne
-    @JoinColumn(name = "follower_id", referencedColumnName = "id")
-    private Account account_fl;
-
-    @Column(name = "like_time")
-    private LocalDateTime like_time;
+    @JoinColumn(name = "FOLLOWER_ID", referencedColumnName = "ID")
+    private Account followerId;
 }
