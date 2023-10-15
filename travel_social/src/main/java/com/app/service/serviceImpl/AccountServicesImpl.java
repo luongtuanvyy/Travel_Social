@@ -18,12 +18,6 @@ public class AccountServicesImpl implements AccountServices {
         return accountRepository.findAll();
     }
 
-
-//    @Override
-//    public Optional<Account> findByUsername(String username) {
-//        return accountRepository.findByUser_name(username);
-//    }
-
     @Override
     public Optional<Account> findById(Integer id) {
         return accountRepository.findById(id);
@@ -32,5 +26,15 @@ public class AccountServicesImpl implements AccountServices {
     @Override
     public Account save(Account account) {
         return accountRepository.save(account);
+    }
+
+    @Override
+    public Optional<Account> findByAccountName(String AccountName) {
+        return accountRepository.findByAccountName(AccountName);
+    }
+
+    @Override
+    public Optional<Account> findByEmail(String Email) {
+        return accountRepository.findByEmail(Email);
     }
 }

@@ -10,4 +10,6 @@ public interface AccountServices {
     Optional<Account> findById(Integer id);
     Account save (Account account);
 
+    Optional<Account> findByAccountName(String AccountName);
+    Optional<Account> findByEmail(String Email);
 }

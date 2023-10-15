@@ -85,7 +85,7 @@ public class ReviewServicesimpl implements ReviewServices {
 
     @Override
     public APIResponse findByReviewTour(Integer id) {
-        List<Review> respone = reviewRepository.findByReviewTour(id);
-        return new APIResponse(respone);
+//        List<Review> respone = reviewRepository.findByReviewTour(id);
+        return new APIResponse(null);
     }
 }

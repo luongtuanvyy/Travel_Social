@@ -24,7 +24,7 @@ public abstract class BaseEntity {
     @Column(name = "IS_ACTIVE")
     private boolean isActive;
 
-    @Column(name = "CREATE_AT")
+    @Column(name = "CREATE_AT", columnDefinition = "DATETIME(6) DEFAULT CURRENT_TIMESTAMP(6)")
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
     private Date createdAt;
@@ -33,7 +33,7 @@ public abstract class BaseEntity {
     @CreatedBy
     private String createdBy;
 
-    @Column(name = "MODIFIED_AT")
+    @Column(name = "MODIFIED_AT", columnDefinition = "DATETIME(6) DEFAULT CURRENT_TIMESTAMP(6)")
     @LastModifiedDate
     @Temporal(TemporalType.TIMESTAMP)
     private Date modifiedAt;
