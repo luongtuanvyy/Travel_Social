@@ -2,6 +2,7 @@ package com.app.config;
 
 
 import com.app.security.CustomAccessDeniedHandler;
+import com.app.security.LogoutService;
 import com.app.security.RestAuthenticationEntryPoint;
 import com.app.security.TokenAuthenticationFilter;
 import com.app.service.serviceImpl.UserDetailServices;
@@ -17,13 +18,13 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 
 @Configuration
@@ -32,32 +33,40 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 @SuppressWarnings("deprecation")
 public class SecurityConfig {
     @Autowired
-    RestAuthenticationEntryPoint restAuthenticationEntryPoint ;
+    RestAuthenticationEntryPoint restAuthenticationEntryPoint;
     @Autowired
     TokenAuthenticationFilter tokenAuthenticationFilter;
+    @Autowired
+    LogoutService logoutService;
+
     @Bean
     public MappingJackson2HttpMessageConverter jsonConverter() {
         return new MappingJackson2HttpMessageConverter();
     }
+
     @Bean
     public UserDetailsService userDetailsService() {
-        return  new UserDetailServices();
+        return new UserDetailServices();
     }
+
     @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+
     @Bean
-    public AuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
+    public AuthenticationProvider authenticationProvider() {
+        DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
         authenticationProvider.setUserDetailsService(userDetailsService());
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         return authenticationProvider;
     }
+
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)throws Exception{
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration) throws Exception {
         return configuration.getAuthenticationManager();
     }
+
     @Bean
     public AccessDeniedHandler accessDeniedHandler() {
         return new CustomAccessDeniedHandler();
@@ -67,25 +76,28 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable());
-        http.authorizeRequests(auth ->  auth.requestMatchers("/api/login",  "/api/login1",
-                                "/api/logout", "api/register"
-                        ,"/"
-                        ,"/error"
-                        , "/favicon.ico",
-                        "/api/**"
+        http.authorizeRequests(auth -> auth.requestMatchers("/api/login", "/api/login1", "api/register"
+                                , "/"
+                                , "/error"
+                                , "/favicon.ico",
+                                "/api/**"
 //                        , "/**/*.png"
-                ).permitAll()
+                        ).permitAll()
                         .requestMatchers("/user/**").hasRole("USER")
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/company/**").hasRole("COMPANY")
-                        .requestMatchers("/user/**").hasAnyRole("USER","ADMIN","COMPANY")
+                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN", "COMPANY")
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler()))
-                .authenticationProvider(authenticationProvider());
-        http.logout(logout -> logout.logoutUrl("/api/logout").addLogoutHandler(new SecurityContextLogoutHandler()));
+                .authenticationProvider(authenticationProvider()
+                );
         http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.logout().logoutUrl("/api/logout")
+                .addLogoutHandler(logoutService).logoutSuccessHandler(((request, response, authentication) -> {
+                    SecurityContextHolder.clearContext();
+                }));
         return http.build();
     }
 

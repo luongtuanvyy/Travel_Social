@@ -15,7 +15,7 @@ import java.util.function.Function;
 @Component
 public class TokenProvider {
     String secretKey = "travel social";
-    int expiredTokenMsec = 60 * 60 * 1000;
+    int expiredTokenMsec =86400000;
     public final Logger logger = LoggerFactory.getLogger(TokenProvider.class);
     private AppProperties appProperties;
 
@@ -25,7 +25,7 @@ public class TokenProvider {
 
     public String generateToken(Account account) {
         Date now = new Date();
-        Date expiredDate = new Date(now.getTime() + expiredTokenMsec);
+        Date expiredDate = new Date(now.getTime() + expiredTokenMsec); // a day
         Algorithm algorithm = Algorithm.HMAC256(secretKey.getBytes());
 
 //        return JWT.create().withSubject(account.getUser_name())
@@ -41,10 +41,10 @@ public class TokenProvider {
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();
     }
-    public String genarateRefershTolen(Account account) {
+    public String genarateRefershToken(Account account) {
         Algorithm algorithm = Algorithm.HMAC256(secretKey.getBytes());
         Date now = new Date();
-        Date expiredDate = new Date(now.getTime() + expiredTokenMsec);
+        Date expiredDate = new Date(now.getTime() + 604800000); // 7 day
 //        return JWT.create().withSubject(account.getUser_name())
 //                .withExpiresAt(expiredDate)
 //                .sign(algorithm);
@@ -61,6 +61,7 @@ public class TokenProvider {
     public Date getExpirationDateFromToken(String token) {
         return getClaimFromToken(token, Claims::getExpiration);
     }
+
     public <T> T getClaimFromToken(String token, Function<Claims, T> claimsResolver) {
         final Claims claims = getAllClaimsFromToken(token);
         return claimsResolver.apply(claims);
@@ -72,9 +73,9 @@ public class TokenProvider {
         final Date expiration = getExpirationDateFromToken(token);
         return expiration.before(new Date());
     }
-    public Boolean validateToken(String token, UserDetails userDetails) {
+    public Boolean validateToken(String token,Account account) {
         final String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
+        return (username.equals(account.getAccountName()) && !isTokenExpired(token));
     }
     public boolean validateToken(String authToken) {
         try {

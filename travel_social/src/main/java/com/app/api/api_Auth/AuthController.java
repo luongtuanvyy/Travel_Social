@@ -4,10 +4,15 @@ import com.app.payload.request.AuthenticationRequest;
 import com.app.payload.request.RegistrationRequest;
 import com.app.payload.response.APIResponse;
 import com.app.service.AuthService;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
 
 @RestController
 @RequestMapping("/api")
@@ -23,11 +28,11 @@ public class AuthController {
         APIResponse result = authService.login(authenticationRequest);
         return ResponseEntity.ok(result);
     }
-    @GetMapping("/logout")
-    public ResponseEntity<?> logout() {
-        APIResponse response = authService.logout();
-        return ResponseEntity.ok(response);
-    }
+//    @GetMapping("/logout")
+//    public ResponseEntity<?> logout() {
+//        APIResponse response = authService.logout();
+//        return ResponseEntity.ok(response);
+//    }
     @PostMapping(path = "/register", consumes = {"multipart/form-data"})
     public ResponseEntity<?>register(
             @RequestPart(name = "account") RegistrationRequest registrationRequest,
@@ -41,5 +46,9 @@ public class AuthController {
         System.out.println("nofile");
         apiResponse = authService.register(registrationRequest);
         return  ResponseEntity.ok(apiResponse);
+    }
+    @PostMapping("/refresh-token")
+    public  void refreshToken(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        authService.refreshToken(request,response);
     }
 }

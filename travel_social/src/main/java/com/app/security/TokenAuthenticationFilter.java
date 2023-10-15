@@ -1,5 +1,6 @@
 package com.app.security;
 
+import com.app.repository.TokenRepository;
 import com.app.service.serviceImpl.UserDetailServices;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -19,17 +20,24 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import java.io.IOException;
 @Component
 public class TokenAuthenticationFilter extends OncePerRequestFilter {
+
     @Autowired
     TokenProvider tokenProvider;
+
     @Autowired
     UserDetailServices userDetailsService;
+
+    @Autowired
+    TokenRepository tokenRepository;
     private static final Logger logger = LoggerFactory.getLogger(TokenAuthenticationFilter.class);
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,@NonNull HttpServletResponse response, @NonNull FilterChain filterChain) throws ServletException, IOException {
 
         try {
             String jwt = getJwtFromRequest(request);
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
+            var isTokenValid = tokenRepository.findByToken(jwt).map(t-> !t.isExpried() && !t.isRevoked())
+                    .orElse(false);
+            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt) && isTokenValid) {
                     String userName = tokenProvider.getUsernameFromToken(jwt);
                     UserDetails userDetails = userDetailsService.loadUserByUsername(userName);
                     UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(
@@ -44,6 +52,13 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
             logger.error("Could not set user authentication in security context", ex);
         }
         filterChain.doFilter(request, response);
+    }
+    private String getJwtFromRequest(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7, bearerToken.length());
+        }
+        return null;
     }
 //    @Override
 //    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
@@ -89,11 +104,5 @@ public class TokenAuthenticationFilter extends OncePerRequestFilter {
 //        }
 //        filterChain.doFilter(request, response);
 //    }
-    private String getJwtFromRequest(HttpServletRequest request) {
-        String bearerToken = request.getHeader("Authorization");
-        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
-            return bearerToken.substring(7, bearerToken.length());
-        }
-        return null;
-    }
+
 }
