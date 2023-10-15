@@ -3,26 +3,29 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
-@Data
-@Builder
 @Entity
 @Table(name = "TOUR_CANCEL")
-@AllArgsConstructor
 @NoArgsConstructor
-public class TourCancel extends BaseEntity {
-    @Column(name = "PERCENT")
-    private Integer first_name;
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+public class TourCancel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+    private Integer percent;
 
-    @Column(name = "DATE")
-    private Timestamp date;
+    private LocalDateTime date;
 
     @ManyToOne
-    @JoinColumn(name = "TOUR_ID")
+    @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
     private Tour tour;
 
 }

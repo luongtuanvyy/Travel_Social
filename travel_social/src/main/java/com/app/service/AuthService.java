@@ -11,7 +11,6 @@ public interface AuthService {
     APIResponse login(AuthenticationRequest authenticationRequest);
     APIResponse register(RegistrationRequest registrationRequest);
 
-    APIResponse register (Account account, MultipartFile file);
-    APIResponse updateInformation (UserDetail userDetail, Account account, MultipartFile file);
+    APIResponse register (RegistrationRequest registrationRequest, MultipartFile file);
     APIResponse logout();
 }

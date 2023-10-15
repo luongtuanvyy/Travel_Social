@@ -1,7 +1,7 @@
 package com.app.service.serviceImpl;
 
 import com.app.entity.Tour;
-import com.app.entity.Vehical;
+import com.app.entity.Vehicle;
 import com.app.payload.request.TourQueryParam;
 import com.app.payload.request.VehicalQueryParam;
 import com.app.payload.response.APIResponse;
@@ -28,12 +28,13 @@ public class VehicalServicesImpl implements VehicalServices {
 
     @Autowired
     RequestParamsUtils requestParamsUtils;
+
     @Override
 
     public APIResponse filterVehical(VehicalQueryParam vehicalQueryParam) {
-        Specification<Vehical> spec = vehicalSpecification.getVehicalSpecification(vehicalQueryParam);
+        Specification<Vehicle> spec = vehicalSpecification.getVehicalSpecification(vehicalQueryParam);
         Pageable pageable = requestParamsUtils.getPageable(vehicalQueryParam);
-        Page<Vehical> response = vehicalRepository.findAll(spec, pageable);
+        Page<Vehicle> response = vehicalRepository.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
     }
 }

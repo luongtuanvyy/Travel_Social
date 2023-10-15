@@ -30,7 +30,7 @@ public class AccountServicesImpl implements AccountServices {
 
     @Override
     public Optional<Account> findByAccountName(String AccountName) {
-        return accountRepository.findByAccountname(AccountName);
+        return accountRepository.findByAccountName(AccountName);
     }
 
     @Override

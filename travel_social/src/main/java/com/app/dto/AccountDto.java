@@ -1,6 +1,7 @@
 package com.app.dto;
 
 import com.app.type.ERole;
+import jakarta.persistence.Column;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,19 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class AccountDto {
-    private String user_name;
-    private String full_name;
-    private String email;
-    private Boolean gender;
-    private String phone_number;
-    private String avatar;
-    private Date birth_day;
+    private String accountName;
+    private String loginType;
     private ERole role;
+    private boolean isVerify;
+    private String cloudinaryId;
+    private String firstName;
+    private String lastName;
+    private String address;
+    private String email;
+    private boolean vip;
+    private String hotline;
+    private String description;
+    private String avatar;
+    private boolean gender;
+    private Date birthday;
 }

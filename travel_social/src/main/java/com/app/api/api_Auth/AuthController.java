@@ -7,6 +7,7 @@ import com.app.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api")
@@ -27,9 +28,18 @@ public class AuthController {
         APIResponse response = authService.logout();
         return ResponseEntity.ok(response);
     }
-    @PostMapping("/register")
-    public ResponseEntity<?>register(@RequestBody RegistrationRequest registrationRequest){
-        APIResponse apiResponse= authService.register(registrationRequest);
+    @PostMapping(path = "/register", consumes = {"multipart/form-data"})
+    public ResponseEntity<?>register(
+            @RequestPart(name = "account") RegistrationRequest registrationRequest,
+            @RequestPart(name = "file",required = false) MultipartFile file ){
+        APIResponse apiResponse= null;
+        if (file != null){
+            System.out.println("file");
+            apiResponse= authService.register(registrationRequest,file);
+            return  ResponseEntity.ok(apiResponse);
+        }
+        System.out.println("nofile");
+        apiResponse = authService.register(registrationRequest);
         return  ResponseEntity.ok(apiResponse);
     }
 }

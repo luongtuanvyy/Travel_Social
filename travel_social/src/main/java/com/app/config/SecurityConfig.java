@@ -23,6 +23,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
 
 @Configuration
@@ -67,7 +68,7 @@ public class SecurityConfig {
 
         http.csrf(csrf -> csrf.disable());
         http.authorizeRequests(auth ->  auth.requestMatchers("/api/login",  "/api/login1",
-                                "api/logout", "api/register"
+                                "/api/logout", "api/register"
                         ,"/"
                         ,"/error"
                         , "/favicon.ico",
@@ -82,6 +83,7 @@ public class SecurityConfig {
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler()))
                 .authenticationProvider(authenticationProvider());
+        http.logout(logout -> logout.logoutUrl("/api/logout").addLogoutHandler(new SecurityContextLogoutHandler()));
         http.addFilterBefore(tokenAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();

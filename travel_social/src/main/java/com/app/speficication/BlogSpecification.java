@@ -1,7 +1,7 @@
 package com.app.speficication;
 
 import com.app.entity.Blog;
-import com.app.entity.Blog_Reaction;
+import com.app.entity.BlogReaction;
 import com.app.payload.request.BlogInterationQueryParam;
 import com.app.payload.request.BlogQueryParam;
 import jakarta.persistence.criteria.CriteriaBuilder;
@@ -18,10 +18,10 @@ public class BlogSpecification {
     public Specification<Blog> hasNameLike(String keyword) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("title"), "%" + keyword + "%");
     }
-    public Specification<Blog_Reaction> hasNameLikes(Integer keyword) {
+
+    public Specification<BlogReaction> hasNameLikes(Integer keyword) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("id"), "%" + keyword + "%");
     }
-
 
     public Specification<Blog> getBlogSpecification(BlogQueryParam blogQueryParam) {
         Specification<Blog> spec = Specification.where(null);
@@ -33,28 +33,30 @@ public class BlogSpecification {
         }
         return spec;
     }
-    public Specification<Blog_Reaction> getBlogInteractionSpecification(BlogInterationQueryParam blogInterationQueryParam) {
-        Specification<Blog_Reaction> spec = Specification.where(null);
+
+    public Specification<BlogReaction> getBlogInteractionSpecification(
+            BlogInterationQueryParam blogInterationQueryParam) {
+        Specification<BlogReaction> spec = Specification.where(null);
         if (blogInterationQueryParam.getId() != null) {
             spec = spec.and(hasNameLikes(blogInterationQueryParam.getId()));
         }
         return spec;
     }
+
     public Specification<Blog> hasNameLikeBlog(String name) {
         return (Root<Blog> root, CriteriaQuery<?> query, CriteriaBuilder criteriaBuilder) -> {
             String nameWithoutDiacritics = removeDiacritics(name);
             String nameUpperCase = nameWithoutDiacritics.toUpperCase();
             Predicate likePredicate = criteriaBuilder.like(
                     criteriaBuilder.upper(root.get("title")),
-                    "%" + nameUpperCase + "%"
-            );
+                    "%" + nameUpperCase + "%");
             return likePredicate;
         };
     }
+
     private String removeDiacritics(String input) {
         return Normalizer.normalize(input, Normalizer.Form.NFD)
                 .replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
     }
-
 
 }

@@ -1,9 +1,7 @@
 package com.app.speficication;
 
 import com.app.entity.Hotel;
-import com.app.entity.Vehical;
 import com.app.payload.request.HotelQueryParam;
-import com.app.payload.request.VehicalQueryParam;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Component;
 

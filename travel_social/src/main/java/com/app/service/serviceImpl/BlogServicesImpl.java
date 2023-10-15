@@ -1,7 +1,7 @@
 package com.app.service.serviceImpl;
 
 import com.app.entity.Blog;
-import com.app.entity.Blog_Reaction;
+import com.app.entity.BlogReaction;
 import com.app.payload.request.BlogInterationQueryParam;
 import com.app.payload.request.BlogQueryParam;
 import com.app.payload.response.APIResponse;
@@ -38,7 +38,6 @@ public class BlogServicesImpl implements BlogServices {
     @Autowired
     CloudinaryService cloudinaryService;
 
-
     @Override
     public List<Blog> findAll() {
         return blogRepository.findAll();
@@ -59,9 +58,9 @@ public class BlogServicesImpl implements BlogServices {
 
     @Override
     public APIResponse filterBlogInteraction(BlogInterationQueryParam blogInterationQueryParam) {
-        Specification<Blog_Reaction> spec = blogSpecification.getBlogInteractionSpecification(blogInterationQueryParam);
+        Specification<BlogReaction> spec = blogSpecification.getBlogInteractionSpecification(blogInterationQueryParam);
         Pageable pageable = requestParamsUtils.getPageable(blogInterationQueryParam);
-        Page<Blog_Reaction> response = blogInteractionResponsitory.findAll(spec, pageable);
+        Page<BlogReaction> response = blogInteractionResponsitory.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
     }
 
@@ -77,13 +76,13 @@ public class BlogServicesImpl implements BlogServices {
     }
 
     @Override
-    public APIResponse update(Blog blog,MultipartFile image) {
-        if(blog == null){
-            return  new FailureAPIResponse("Blog id is required!");
+    public APIResponse update(Blog blog, MultipartFile image) {
+        if (blog == null) {
+            return new FailureAPIResponse("Blog id is required!");
         }
         Blog exists = blogRepository.findById(blog.getId()).orElse(null);
-        if(exists == null){
-            return  new FailureAPIResponse("Cannot find blog with id: "+blog.getId());
+        if (exists == null) {
+            return new FailureAPIResponse("Cannot find blog with id: " + blog.getId());
         }
         if (image != null) {
             cloudinaryService.deleteFile(blog.getCloudinaryId());
@@ -110,7 +109,4 @@ public class BlogServicesImpl implements BlogServices {
         return null;
     }
 
-
 }
-
-

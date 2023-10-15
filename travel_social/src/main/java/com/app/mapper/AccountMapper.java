@@ -13,19 +13,19 @@ public class AccountMapper {
     @Autowired
     ModelMapper modelMapper;
 
-    public AccountDto accountUserDto (Account account){
+    public AccountDto accountDto (Account account){
         modelMapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT); // Chỉ định cấu hình nghiêm ngặt
         TypeMap<Account, AccountDto> typeMap = modelMapper.getTypeMap(Account.class, AccountDto.class);
         if (typeMap == null) {
             modelMapper.createTypeMap(Account.class, AccountDto.class)
                     .addMappings(mapper -> {
-                        mapper.map(Account::getAccountname, AccountDto::setUser_name);
+                        mapper.map(Account::getAccountName, AccountDto::setAccountName);
 
                         mapper.map(src -> src.getEmail(), AccountDto::setEmail);
                         mapper.map(src -> src.isGender(), AccountDto::setGender);
-                        mapper.map(src -> src.getHotline(), AccountDto::setPhone_number);
+                        mapper.map(src -> src.getHotline(), AccountDto::setHotline);
                         mapper.map(src -> src.getAvatar(), AccountDto::setAvatar);
-                        mapper.map(src -> src.getBirthday(), AccountDto::setBirth_day);
+                        mapper.map(src -> src.getBirthday(), AccountDto::setBirthday);
                         mapper.map(Account::getRole, AccountDto::setRole);
                     });}else{
             typeMap.map(account);

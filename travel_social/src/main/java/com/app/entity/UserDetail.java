@@ -23,7 +23,7 @@ public class UserDetail implements UserDetails {
     }
     public static UserDetail creat(Account account){
         List<GrantedAuthority> authorities1 = Collections.singletonList(new SimpleGrantedAuthority(account.getRole().toString()));
-        return new UserDetail(account.getId(), account.getAccountname(), account.getPassword(), authorities1);
+        return new UserDetail(account.getId(), account.getAccountName(), account.getPassword(), authorities1);
     }
     public Account account(){
         Account account = new Account();

@@ -34,7 +34,7 @@ public class TokenProvider {
 //                .sign(algorithm);
 
         return Jwts.builder()
-                .setSubject(account.getAccountname())
+                .setSubject(account.getAccountName())
                 .claim("role",account.getRole())
                 .setIssuedAt(now)
                 .setExpiration(expiredDate)
@@ -49,7 +49,7 @@ public class TokenProvider {
 //                .withExpiresAt(expiredDate)
 //                .sign(algorithm);
         return    Jwts.builder()
-                .setSubject(account.getAccountname())
+                .setSubject(account.getAccountName())
                 .setExpiration(expiredDate)
                 .signWith(SignatureAlgorithm.HS256, secretKey)
                 .compact();

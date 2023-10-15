@@ -3,19 +3,20 @@ package com.app.entity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.sql.Timestamp;
 
-@Data
 @Entity
 @Table(name = "VOUCHER")
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
-public class Voucher extends BaseEntity{
-
+@Builder
+@Getter
+@Setter
+public class Voucher extends BaseEntity {
     @Column(name = "TIME_START")
     private Timestamp timeStart;
 
@@ -29,7 +30,6 @@ public class Voucher extends BaseEntity{
     private Integer percent;
 
     @ManyToOne
-    @JoinColumn(name = "tour_id")
-    private Tour tour;
-
+    @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
+    private Tour tourId;
 }

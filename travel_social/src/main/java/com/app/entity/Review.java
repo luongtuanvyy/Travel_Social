@@ -1,33 +1,28 @@
 package com.app.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.time.LocalDateTime;
-
-@Data
 @Entity
 @Table(name = "REVIEW")
-public class Review extends BaseEntity{
-
-    @Column(name = "RATING")
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+public class Review extends BaseEntity {
     private Float rating;
-
-    @Column(name = "REVIEW_DATE")
-    private LocalDateTime reviewDate;
-
-    @Column(name = "IMAGE")
     private String image;
 
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
 
     @ManyToOne
-    @JoinColumn(name = "ACCOUNT_ID")
-    private Account account;
-
-    @ManyToOne
-    @JoinColumn(name = "TOUR_ID")
-    private Tour tour;
+    @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
+    private Tour tourId;
 
 }
