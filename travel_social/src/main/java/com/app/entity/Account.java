@@ -17,7 +17,7 @@ import java.util.Date;
 @Setter
 public class Account extends BaseEntity {
 
-    @Column(name = "ACCOUNTNAME")
+    @Column(name = "ACCOUNTNAME", unique = true)
     private String accountname;
 
     @Column(name = "PASSWORD")
@@ -38,7 +38,7 @@ public class Account extends BaseEntity {
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "EMAIL")
+    @Column(name = "EMAIL", unique = true)
     private String email;
 
     @Column(name = "VIP")
