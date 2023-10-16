@@ -24,23 +24,24 @@ public class Tour extends BaseEntity {
     private String name;
     private BigDecimal price;
     private String departure;
-    private String description;
     private String image;
     private Integer size;
     private Integer registered;
+    private Integer percent;
+    private String vehical;
 
-    @Column(name = "IS_VERIFY")
-    private boolean isVerify;
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;
-
     @Column(name = "START_DATE_BOOKING")
     private LocalDateTime startDateBooking;
     @Column(name = "END_DATE_BOOKING")
     private LocalDateTime endDateBooking;
-
     @Column(name = "START_DATE")
     private LocalDateTime startDate;
     @Column(name = "END_DATE")
     private LocalDateTime startEnd;
+
+    @ManyToOne
+    @JoinColumn(name = "TOUR_TEMPLATE_ID", referencedColumnName = "ID")
+    private TourTemplate tourTemplateId;
 }

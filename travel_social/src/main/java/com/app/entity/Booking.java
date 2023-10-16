@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import com.app.type.EBooking;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -23,10 +24,7 @@ public class Booking extends BaseEntity {
     private Integer children;
     private Integer baby;
     private String qr;
-    private String status;
-
-    @Column(name = "TOTAL_PRICE")
-    private BigDecimal totalPrice;
+    private EBooking status;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")

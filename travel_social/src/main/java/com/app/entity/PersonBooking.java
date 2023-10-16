@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import com.app.type.EAges;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -20,10 +21,12 @@ public class PersonBooking extends BaseEntity {
     private String fullName;
     private Date birthday;
     private boolean gender;
+    private EAges ages;
     private String relationship;
 
+    @Column(name = "IS_CANCEL")
+    private boolean isCancel;
     @ManyToOne
     @JoinColumn(name = "BOOKING_ID", referencedColumnName = "ID")
     private Booking bookingId;
-
 }
