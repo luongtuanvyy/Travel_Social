@@ -17,9 +17,9 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 public class TourPrice extends BaseEntity {
-    private BigDecimal adult;
-    private BigDecimal children;
-    private BigDecimal baby;
+    private Integer adult;
+    private Integer children;
+    private Integer baby;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")

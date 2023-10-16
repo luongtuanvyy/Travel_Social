@@ -1,5 +1,6 @@
 package com.app.entity;
 
+import com.app.type.EBlogNotification;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,7 +23,7 @@ public class BlogNotification {
     private Integer id;
 
     @Column(name = "NOTIFICATION_TYPE")
-    private String notificationType;
+    private EBlogNotification notificationType;
 
     @Column(name = "CREATE_TIME")
     private LocalDateTime createTime;

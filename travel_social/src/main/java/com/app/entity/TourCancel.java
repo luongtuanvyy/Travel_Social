@@ -22,10 +22,9 @@ public class TourCancel {
     private Integer id;
     private Integer percent;
 
-    private LocalDateTime date;
+    private Integer date;
 
     @ManyToOne
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
     private Tour tour;
-
 }

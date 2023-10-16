@@ -25,4 +25,7 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
     private Tour tourId;
 
+    @ManyToOne
+    @JoinColumn(name = "REVIEW_ID", referencedColumnName = "ID")
+    private Review reviewId;
 }
