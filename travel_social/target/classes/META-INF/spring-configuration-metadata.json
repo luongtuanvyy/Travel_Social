@@ -1,0 +1,49 @@
+{
+  "groups": [
+    {
+      "name": "app",
+      "type": "com.app.config.AppProperties",
+      "sourceType": "com.app.config.AppProperties"
+    },
+    {
+      "name": "app.auth",
+      "type": "com.app.config.AppProperties$Auth",
+      "sourceType": "com.app.config.AppProperties",
+      "sourceMethod": "getAuth()"
+    },
+    {
+      "name": "cloudinary",
+      "type": "com.app.type.properties.CloudinaryProperties",
+      "sourceType": "com.app.type.properties.CloudinaryProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "app.auth.token-expiration-msec",
+      "type": "java.lang.Long",
+      "sourceType": "com.app.config.AppProperties$Auth",
+      "defaultValue": 0
+    },
+    {
+      "name": "app.auth.token-secret",
+      "type": "java.lang.String",
+      "sourceType": "com.app.config.AppProperties$Auth"
+    },
+    {
+      "name": "cloudinary.cloud-api-key",
+      "type": "java.lang.String",
+      "sourceType": "com.app.type.properties.CloudinaryProperties"
+    },
+    {
+      "name": "cloudinary.cloud-name",
+      "type": "java.lang.String",
+      "sourceType": "com.app.type.properties.CloudinaryProperties"
+    },
+    {
+      "name": "cloudinary.cloud-secret-key",
+      "type": "java.lang.String",
+      "sourceType": "com.app.type.properties.CloudinaryProperties"
+    }
+  ],
+  "hints": []
+}
