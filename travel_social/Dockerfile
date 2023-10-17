@@ -1,6 +1,9 @@
-FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
-COPY target/*.jar app.jar
-ENTRYPOINT ["java","-jar","/app.jar"]
+FROM maven:3.8.5-openjdk-17 AS build
+COPY . .
+RUN mvn clean package
+
+FROM openjdk:17-alpine
+COPY --from=build /target/travel_social-0.0.1-SNAPSHOT.jar trave_social.jar
 
 EXPOSE 9999
+ENTRYPOINT ["java","-jar","travel_social.jar"]
