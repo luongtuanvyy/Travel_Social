@@ -41,9 +41,11 @@ public class Account extends BaseEntity {
     private String email;
     private boolean vip;
     private String hotline;
+    @Column(name = "description", columnDefinition = "LONGTEXT")
     private String description;
     private String avatar;
     private boolean gender;
+    @Column(columnDefinition = "DATE DEFAULT (CURRENT_DATE)")
     private Date birthday;
 
     @Override

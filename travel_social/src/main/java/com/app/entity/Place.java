@@ -19,6 +19,7 @@ import lombok.Setter;
 public class Place extends BaseEntity {
     private String name;
     private String address;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String website;
     private String hotline;

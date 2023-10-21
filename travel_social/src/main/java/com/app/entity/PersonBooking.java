@@ -19,6 +19,7 @@ import java.util.Date;
 @Setter
 public class PersonBooking extends BaseEntity {
     private String fullName;
+    @Column(columnDefinition = "DATE DEFAULT (CURRENT_DATE)")
     private Date birthday;
     private boolean gender;
     private EAges ages;

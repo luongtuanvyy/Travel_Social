@@ -14,5 +14,6 @@ import lombok.*;
 @Setter
 public class TourTemplate extends BaseEntity{
     private String name;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 }

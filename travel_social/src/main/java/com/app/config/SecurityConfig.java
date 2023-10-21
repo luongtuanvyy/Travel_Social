@@ -76,15 +76,15 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
         http.csrf(csrf -> csrf.disable());
-        http.authorizeRequests(auth -> auth.requestMatchers("/api/login", "/api/login1", "api/register"
+        http.authorizeRequests((auth) ->
+                        auth.requestMatchers("/api/login", "/api/login1", "api/register","/api/refresh-token"
                                 , "/"
                                 , "/error"
-                                , "/favicon.ico",
-                                "/api/**"
+                                , "/favicon.ico"
 //                        , "/**/*.png"
                         ).permitAll()
                         .requestMatchers("/user/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
+                        .requestMatchers("/api/admin/**").hasRole("ADMIN")
                         .requestMatchers("/company/**").hasRole("COMPANY")
                         .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN", "COMPANY")
                         .anyRequest().authenticated())

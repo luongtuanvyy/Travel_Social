@@ -22,6 +22,7 @@ public class BlogReaction {
     private Integer id;
 
     private boolean share;
+    @Column(columnDefinition = "LONGTEXT")
     private String comment;
 
     @Column(name = "REACTION_LIKE")
