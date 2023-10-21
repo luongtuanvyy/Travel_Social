@@ -9,5 +9,7 @@ public class RestaurantQueryParam extends BaseQueryRequest{
 
     Integer id;
 
-    String name;;
+    String name;
+
+    String address;
 }

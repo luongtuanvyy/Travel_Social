@@ -5,10 +5,5 @@ import lombok.Data;
 
 @Data
 @Builder
-public class VehicalQueryParam extends BaseQueryRequest{
-    Integer id;
-
-    String name;
-
-
+public class TourTemplateQueryParam extends BaseQueryRequest{
 }

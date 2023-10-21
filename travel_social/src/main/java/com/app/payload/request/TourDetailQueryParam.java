@@ -12,5 +12,13 @@ public class TourDetailQueryParam extends BaseQueryRequest{
 
     Date dates;
 
-    Date times;
+    String restaurant;
+
+    String place;
+
+    String vehicle;
+
+    String hotel ;
+
+    String tour;
 }

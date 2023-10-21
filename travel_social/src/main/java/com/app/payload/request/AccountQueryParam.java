@@ -7,4 +7,10 @@ import lombok.Data;
 @Builder
 public class AccountQueryParam extends BaseQueryRequest {
     String email;
+
+    String fisrtName;
+
+    String hotline;
+
+    String lastName;
 }

@@ -12,9 +12,7 @@ public class HotelQueryParam extends BaseQueryRequest{
 
     String address;
 
-    Boolean verify;
-
     Float rating;
 
-    Boolean active;
+
 }
