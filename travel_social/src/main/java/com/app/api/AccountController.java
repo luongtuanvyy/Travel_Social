@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/admin")
 public class AccountController {
     @Autowired
     AccountServices accountServices;
-    @GetMapping("/findAll")
+    @GetMapping("/account")
     public ResponseEntity<?> findAll(){
         List<Account> accountList = accountServices.findAll();
         return ResponseEntity.ok(accountList);

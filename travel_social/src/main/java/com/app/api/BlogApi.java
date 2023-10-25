@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/api/user")
 public class BlogApi {
     @Autowired
     BlogServices blogServices;
 
-    @GetMapping("/blogs/filter")
+    @GetMapping("/blogs")
     public ResponseEntity<?> getAllBlog (BlogQueryParam blogQueryParam) {
         return ResponseEntity.ok(blogServices.filterBlog(blogQueryParam));
     }
