@@ -15,7 +15,7 @@ public class BookingApi {
     @Autowired
     BookingServices bookingService;
 
-    @GetMapping("/public/bookings/filter")
+    @GetMapping("/bookings")
     public ResponseEntity<?> filterBooking(BookingQueryParam bookingQueryParam) {
         return ResponseEntity.ok(bookingService.filterBooking(bookingQueryParam));
     }

@@ -1,15 +1,18 @@
 package com.app.service.serviceImpl;
 
 import com.app.entity.Booking;
-import com.app.entity.Tour;
+import com.app.entity.Payment;
 import com.app.payload.request.BookingQueryParam;
+import com.app.payload.request.PaymentQueryParam;
 import com.app.payload.response.APIResponse;
 import com.app.payload.response.FailureAPIResponse;
 import com.app.payload.response.SuccessAPIResponse;
 import com.app.repository.BookingRepository;
-import com.app.service.AuthService;
+import com.app.repository.PaymentRepository;
 import com.app.service.BookingServices;
+import com.app.service.PaymentServices;
 import com.app.speficication.BookingSpecification;
+import com.app.speficication.PaymentSpecification;
 import com.app.utils.PageUtils;
 import com.app.utils.RequestParamsUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,51 +21,48 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.xml.crypto.Data;
 import java.util.Date;
 
 @Service
-public class BookingServiceimpl implements BookingServices {
+public class PaymentServiceimpl implements PaymentServices {
     @Autowired
-    BookingSpecification bookingSpecification;
+    PaymentSpecification paymentSpecification;
     @Autowired
     RequestParamsUtils requestParamsUtils;
     @Autowired
-    BookingRepository bookingRepository;
+    PaymentRepository paymentRepository;
     @Autowired
     CloudinaryService cloudinaryService;
     @Override
-    public APIResponse filterBooking(BookingQueryParam bookingQueryParam) {
-        Specification<Booking> spec = bookingSpecification.getBookingSpecitification(bookingQueryParam);
-        Pageable pageable = requestParamsUtils.getPageable(bookingQueryParam);
-        Page<Booking> response = bookingRepository.findAll(spec, pageable);
+    public APIResponse filterPayment(PaymentQueryParam paymentQueryParam) {
+        Specification<Payment> spec = paymentSpecification.getPaymentSpecitification(paymentQueryParam);
+        Pageable pageable = requestParamsUtils.getPageable(paymentQueryParam);
+        Page<Payment> response = paymentRepository.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
     }
     @Override
-    public APIResponse create(Booking booking) {
-        booking.setCreatedBy("1");
-        booking.setCreatedAt(new Date());
-        booking = bookingRepository.save(booking);
-        return new SuccessAPIResponse(booking);
+    public APIResponse create(Payment payment) {
+        payment = paymentRepository.save(payment);
+        return new SuccessAPIResponse(payment);
     }
 
     @Override
-    public APIResponse update(Booking booking) {
-        if(booking == null){
-            return  new FailureAPIResponse("Booking id is required!");
+    public APIResponse update(Payment payment) {
+        if(payment == null){
+            return  new FailureAPIResponse("Payment id is required!");
         }
-        Booking exists = bookingRepository.findById(booking.getId()).orElse(null);
+        Payment exists = paymentRepository.findById(payment.getId()).orElse(null);
         if(exists == null){
-            return  new FailureAPIResponse("Cannot find Booking with id: "+booking.getId());
+            return  new FailureAPIResponse("Cannot find Booking with id: "+payment.getId());
         }
-        booking = bookingRepository.save(booking);
-        return new SuccessAPIResponse(booking);
+        payment = paymentRepository.save(payment);
+        return new SuccessAPIResponse(payment);
     }
 
     @Override
     public APIResponse delete(Integer id) {
         try {
-            bookingRepository.deleteById(id);
+            paymentRepository.deleteById(id);
             return new SuccessAPIResponse("Delete successfully!");
         } catch (Exception ex) {
             return new FailureAPIResponse(ex.getMessage());

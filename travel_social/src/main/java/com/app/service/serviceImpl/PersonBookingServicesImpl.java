@@ -31,4 +31,5 @@ public class PersonBookingServicesImpl implements PersonBookingServices {
         Page<PersonBooking> response = personBookingRepository.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
     }
+
 }
