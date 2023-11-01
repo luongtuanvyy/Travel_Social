@@ -2,7 +2,7 @@ package com.app.service.serviceImpl;
 
 import com.app.entity.Blog;
 import com.app.entity.BlogReaction;
-import com.app.payload.request.BlogInterationQueryParam;
+import com.app.payload.request.BlogReactionQueryParam;
 import com.app.payload.request.BlogQueryParam;
 import com.app.payload.response.APIResponse;
 import com.app.payload.response.CloudinaryResponse;
@@ -57,7 +57,7 @@ public class BlogServicesImpl implements BlogServices {
     }
 
     @Override
-    public APIResponse filterBlogInteraction(BlogInterationQueryParam blogInterationQueryParam) {
+    public APIResponse filterBlogInteraction(BlogReactionQueryParam blogInterationQueryParam) {
         Specification<BlogReaction> spec = blogSpecification.getBlogInteractionSpecification(blogInterationQueryParam);
         Pageable pageable = requestParamsUtils.getPageable(blogInterationQueryParam);
         Page<BlogReaction> response = blogInteractionResponsitory.findAll(spec, pageable);

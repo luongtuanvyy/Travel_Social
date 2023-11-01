@@ -2,7 +2,7 @@ package com.app.speficication;
 
 import com.app.entity.Blog;
 import com.app.entity.BlogReaction;
-import com.app.payload.request.BlogInterationQueryParam;
+import com.app.payload.request.BlogReactionQueryParam;
 import com.app.payload.request.BlogQueryParam;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
@@ -35,7 +35,7 @@ public class BlogSpecification {
     }
 
     public Specification<BlogReaction> getBlogInteractionSpecification(
-            BlogInterationQueryParam blogInterationQueryParam) {
+            BlogReactionQueryParam blogInterationQueryParam) {
         Specification<BlogReaction> spec = Specification.where(null);
         if (blogInterationQueryParam.getId() != null) {
             spec = spec.and(hasNameLikes(blogInterationQueryParam.getId()));

@@ -10,9 +10,10 @@ import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Predicate;
 import jakarta.persistence.criteria.Root;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
 
 import java.text.Normalizer;
-
+@Component
 public class TourGuideSpecification {
     public Specification<TourGuide> hasIdEqual(Integer id) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), id);

@@ -1,6 +1,6 @@
 package com.app.api;
 
-import com.app.payload.request.BlogInterationQueryParam;
+import com.app.payload.request.BlogReactionQueryParam;
 import com.app.service.BlogServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -10,11 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api")
-public class BlogInteractionApi {
+public class BlogReactionApi {
     @Autowired
     BlogServices blogServices;
-    @GetMapping("/bloginteractions")
-    public ResponseEntity<?> getAllBlogInteraction (BlogInterationQueryParam blogInterationQueryParam) {
+    @GetMapping("/blogreaction")
+    public ResponseEntity<?> getAllBlogInteraction (BlogReactionQueryParam blogInterationQueryParam) {
         return ResponseEntity.ok(blogServices.filterBlogInteraction(blogInterationQueryParam));
     }
 }

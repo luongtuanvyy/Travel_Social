@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class BlogInterationQueryParam extends BaseQueryRequest{
+public class BlogReactionQueryParam extends BaseQueryRequest{
     Integer id;
 }

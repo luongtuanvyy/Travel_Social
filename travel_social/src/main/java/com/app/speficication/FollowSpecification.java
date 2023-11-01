@@ -8,8 +8,8 @@ import java.time.LocalDateTime;
 
 @Component
 public class FollowSpecification {
-    public Specification<Follow> hasNameLike(LocalDateTime followtime) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("followtime"), followtime);
+    public Specification<Follow> hasNameLike(Integer followerID) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("followerID"), "%" + followerID + "%");
     }
     public Specification<Follow> hasNameLikes(Integer keyword) {
         return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("id"), "%" + keyword + "%");
@@ -18,8 +18,8 @@ public class FollowSpecification {
 
     public Specification<Follow> getFollowSpecitification(FollowQueryParam followQueryParam) {
         Specification<Follow> spec = Specification.where(null);
-        if (followQueryParam.getFollowtime() != null) {
-            spec = spec.and(hasNameLike(followQueryParam.getFollowtime()));
+        if (followQueryParam.getFollowerID() != null) {
+            spec = spec.and(hasNameLike(followQueryParam.getFollowerID()));
         }
         if (followQueryParam.getId() != null) {
             spec = spec.and(hasNameLikes(followQueryParam.getId()));

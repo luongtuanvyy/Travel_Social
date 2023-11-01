@@ -9,5 +9,5 @@ import java.time.LocalDateTime;
 public class FollowQueryParam extends BaseQueryRequest{
     Integer id;
 
-    LocalDateTime followtime;
+    Integer followerID;
 }

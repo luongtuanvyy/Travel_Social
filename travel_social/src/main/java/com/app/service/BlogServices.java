@@ -1,7 +1,7 @@
 package com.app.service;
 
 import com.app.entity.Blog;
-import com.app.payload.request.BlogInterationQueryParam;
+import com.app.payload.request.BlogReactionQueryParam;
 import com.app.payload.request.BlogQueryParam;
 import com.app.payload.response.APIResponse;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,7 +14,7 @@ public interface BlogServices {
     Optional<Blog> findById(Integer id);
 
     APIResponse filterBlog(BlogQueryParam blogQueryParam);
-    APIResponse filterBlogInteraction(BlogInterationQueryParam blogInterationQueryParam);
+    APIResponse filterBlogInteraction(BlogReactionQueryParam blogInterationQueryParam);
 
     APIResponse create(Blog blog,MultipartFile image);
     APIResponse update(Blog blog,MultipartFile image);
