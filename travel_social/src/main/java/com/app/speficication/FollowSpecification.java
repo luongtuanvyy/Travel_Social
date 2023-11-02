@@ -9,17 +9,17 @@ import java.time.LocalDateTime;
 @Component
 public class FollowSpecification {
     public Specification<Follow> hasNameLike(Integer followerID) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("followerID"), "%" + followerID + "%");
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("followerId"), followerID);
     }
     public Specification<Follow> hasNameLikes(Integer keyword) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("id"), "%" + keyword + "%");
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), keyword);
     }
 
 
     public Specification<Follow> getFollowSpecitification(FollowQueryParam followQueryParam) {
         Specification<Follow> spec = Specification.where(null);
-        if (followQueryParam.getFollowerID() != null) {
-            spec = spec.and(hasNameLike(followQueryParam.getFollowerID()));
+        if (followQueryParam.getFollowerId() != null) {
+            spec = spec.and(hasNameLike(followQueryParam.getFollowerId()));
         }
         if (followQueryParam.getId() != null) {
             spec = spec.and(hasNameLikes(followQueryParam.getId()));

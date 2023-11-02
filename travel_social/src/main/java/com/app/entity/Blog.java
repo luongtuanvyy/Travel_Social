@@ -32,7 +32,7 @@ public class Blog extends BaseEntity {
     @JoinColumn(name = "TOUR_ID", referencedColumnName = "ID")
     private Tour tourId;
 
-    @ManyToOne
-    @JoinColumn(name = "BLOG_ID", referencedColumnName = "ID")
-    private Blog blogId;
+//    @ManyToOne
+//    @JoinColumn(name = "BLOG_ID", referencedColumnName = "ID")
+//    private Blog blogId;
 }

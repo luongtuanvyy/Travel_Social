@@ -6,6 +6,9 @@ import com.app.payload.request.TourGuideQueryParam;
 import com.app.payload.request.TourPriceQueryParam;
 import com.app.payload.request.ViewQueryParam;
 import org.springframework.data.jpa.domain.Specification;
+import org.springframework.stereotype.Component;
+
+@Component
 
 public class TuorPriceSpecification {
 

@@ -10,5 +10,5 @@ import java.time.LocalDateTime;
 public class FavoriteQueryParam extends BaseQueryRequest{
     Integer id;
 
-    LocalDateTime favorite_time;
+    Integer tourId;
 }

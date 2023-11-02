@@ -1,7 +1,10 @@
 package com.app.service.serviceImpl;
 import com.app.entity.Favorite;
+import com.app.entity.Follow;
 import com.app.payload.request.FavoriteQueryParam;
 import com.app.payload.response.APIResponse;
+import com.app.payload.response.FailureAPIResponse;
+import com.app.payload.response.SuccessAPIResponse;
 import com.app.repository.FavoriteRepository;
 import com.app.service.FavoriteServices;
 import com.app.speficication.FavoriteSpecification;
@@ -30,5 +33,35 @@ public class FavoriteServicesImpl implements FavoriteServices {
         Pageable pageable = requestParamsUtils.getPageable(favoriteQueryParam);
         Page<Favorite> response = favoriteRepository.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
+    }
+
+    @Override
+    public APIResponse create(Favorite favorite) {
+        favorite = favoriteRepository.save(favorite);
+        return new SuccessAPIResponse(favorite);
+    }
+
+    @Override
+    public APIResponse update(Favorite favorite) {
+        if (favorite == null) {
+            return new FailureAPIResponse("Blog id is required!");
+        }
+        Favorite exists = favoriteRepository.findById(favorite.getId()).orElse(null);
+        if (exists == null) {
+            return new FailureAPIResponse("Cannot find blog with id: " + favorite.getId());
+        }
+
+        favorite = favoriteRepository.save(favorite);
+        return new SuccessAPIResponse(favorite);
+    }
+
+    @Override
+    public APIResponse delete(Integer id) {
+        try {
+            favoriteRepository.deleteById(id);
+            return new SuccessAPIResponse("Delete successfully!");
+        } catch (Exception ex) {
+            return new FailureAPIResponse(ex.getMessage());
+        }
     }
 }

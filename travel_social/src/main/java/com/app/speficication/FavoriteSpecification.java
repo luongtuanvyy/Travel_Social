@@ -9,18 +9,18 @@ import java.time.LocalDateTime;
 
 @Component
 public class FavoriteSpecification {
-    public Specification<Favorite> hasNameLike(LocalDateTime favorite_time) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("favorite_time"), favorite_time);
+    public Specification<Favorite> hasTourIDLike(Integer tourId) {
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("tourId"), tourId);
     }
     public Specification<Favorite> hasNameLikes(Integer keyword) {
-        return (root, query, criteriaBuilder) -> criteriaBuilder.like(root.get("id"), "%" + keyword + "%");
+        return (root, query, criteriaBuilder) -> criteriaBuilder.equal(root.get("id"), keyword);
     }
 
 
     public Specification<Favorite> getFavoriteSpecitification(FavoriteQueryParam favoriteQueryParam) {
         Specification<Favorite> spec = Specification.where(null);
-        if (favoriteQueryParam.getFavorite_time() != null) {
-            spec = spec.and(hasNameLike(favoriteQueryParam.getFavorite_time()));
+        if (favoriteQueryParam.getTourId() != null) {
+            spec = spec.and(hasTourIDLike(favoriteQueryParam.getTourId()));
         }
         if (favoriteQueryParam.getId() != null) {
             spec = spec.and(hasNameLikes(favoriteQueryParam.getId()));
