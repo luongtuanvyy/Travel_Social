@@ -20,7 +20,7 @@ public class TourDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private LocalDateTime date;
 

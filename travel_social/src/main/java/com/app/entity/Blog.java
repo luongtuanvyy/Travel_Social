@@ -16,6 +16,7 @@ import lombok.Setter;
 @Setter
 public class Blog extends BaseEntity {
     private String image;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     @Column(name = "IS_VERIFY")
