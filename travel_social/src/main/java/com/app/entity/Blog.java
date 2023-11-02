@@ -35,5 +35,5 @@ public class Blog extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "BLOG_ID", referencedColumnName = "ID")
-    private Blog blogId;
+    private Integer blogId;
 }
