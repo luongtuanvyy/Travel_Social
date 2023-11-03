@@ -16,6 +16,7 @@ import lombok.Setter;
 @Setter
 public class Blog extends BaseEntity {
     private String image;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
 
     @Column(name = "IS_VERIFY")
@@ -34,5 +35,5 @@ public class Blog extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(name = "BLOG_ID", referencedColumnName = "ID")
-    private Blog blogId;
+    private Integer blogId;
 }

@@ -24,6 +24,7 @@ public class Vehicle extends BaseEntity {
     private String website;
     private String email;
     private String image;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     @Column(name = "CLOUDINARY_ID")
     private String cloudinaryId;

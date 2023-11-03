@@ -2,6 +2,7 @@ package com.app.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Lob;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,6 +20,7 @@ import lombok.Setter;
 public class Place extends BaseEntity {
     private String name;
     private String address;
+    @Column(columnDefinition = "LONGTEXT")
     private String description;
     private String website;
     private String hotline;
