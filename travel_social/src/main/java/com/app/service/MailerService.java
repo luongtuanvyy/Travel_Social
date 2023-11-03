@@ -1,7 +1,6 @@
 package com.app.service;
 
 
-import com.app.entity.Booking;
 import com.app.entity.MailInfo;
 import com.app.payload.response.APIResponse;
 import jakarta.mail.MessagingException;

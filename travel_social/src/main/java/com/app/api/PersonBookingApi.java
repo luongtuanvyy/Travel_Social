@@ -18,23 +18,23 @@ public class PersonBookingApi {
     PersonBookingServices personBookingServices;
 
     @GetMapping("/person_bookings")
-    public ResponseEntity<?> filterBooking(PersonBookingQueryParam personBookingQueryParam) {
+    public ResponseEntity<?> filterPersonBooking(PersonBookingQueryParam personBookingQueryParam) {
         return ResponseEntity.ok(personBookingServices.filterPersonBooking(personBookingQueryParam));
     }
 
-//    @PostMapping("/person_bookings")
-//    public ResponseEntity<?> createBooking(@RequestPart(name = "person_bookings") Booking booking){
-//        APIResponse response = personBookingServices.create(person_bookings);
-//        return ResponseEntity.status(HttpStatus.CREATED).body(response);
-//    }
-//    @PutMapping("/person_bookings")
-//    public ResponseEntity<?> updateBooking(@RequestPart(name = "person_bookings") Booking booking){
-//        APIResponse response = personBookingServices.update(person_bookings);
-//        return ResponseEntity.status(HttpStatus.OK).body(response);
-//    }
-//    @DeleteMapping("/person_bookings")
-//    public ResponseEntity<?> deleteBooking(@RequestParam("id") Integer id){
-//        APIResponse response = personBookingServices.delete(id);
-//        return ResponseEntity.status(HttpStatus.OK).body(response);
-//    }
+    @PostMapping("/person_bookings")
+    public ResponseEntity<?> createPersonBooking(@RequestPart(name = "person_bookings") PersonBooking personBooking){
+        APIResponse response = personBookingServices.create(personBooking);
+        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+    }
+    @PutMapping("/person_bookings")
+    public ResponseEntity<?> updatePersonBooking(@RequestPart(name = "person_bookings") PersonBooking personBooking){
+        APIResponse response = personBookingServices.update(personBooking);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
+    @DeleteMapping("/person_bookings")
+    public ResponseEntity<?> deletePersonBooking(@RequestParam("id") Integer id){
+        APIResponse response = personBookingServices.delete(id);
+        return ResponseEntity.status(HttpStatus.OK).body(response);
+    }
 }

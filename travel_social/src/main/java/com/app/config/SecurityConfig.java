@@ -80,13 +80,19 @@ public class SecurityConfig {
                                 , "/"
                                 , "/error"
                                 , "/favicon.ico",
-                                "/api/**"
+                                "/api/**",
+                                "/admin/**",
+                                //swagger auth
+                                "/v3/api-docs/**",
+                                "/swagger-ui/**",
+                                "/swagger-ui.html"
+
 //                        , "/**/*.png"
                         ).permitAll()
-                        .requestMatchers("/user/**").hasRole("USER")
-                        .requestMatchers("/admin/**").hasRole("ADMIN")
-                        .requestMatchers("/company/**").hasRole("COMPANY")
-                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN", "COMPANY")
+//                        .requestMatchers("/user/**").hasRole("USER")
+//                        .requestMatchers("/admin/**").hasRole("ADMIN")
+//                        .requestMatchers("/company/**").hasRole("COMPANY")
+//                        .requestMatchers("/user/**").hasAnyRole("USER", "ADMIN", "COMPANY")
                         .anyRequest().authenticated())
                 .exceptionHandling(ex -> ex.authenticationEntryPoint(restAuthenticationEntryPoint)
                         .accessDeniedHandler(accessDeniedHandler()))

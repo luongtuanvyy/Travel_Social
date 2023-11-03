@@ -1,13 +1,12 @@
 package com.app.service.serviceImpl;
 
-import com.app.entity.Vehicle;
 import com.app.entity.View;
 import com.app.payload.request.ViewQueryParam;
 import com.app.payload.response.APIResponse;
-import com.app.repository.VehicalRepository;
+import com.app.payload.response.FailureAPIResponse;
+import com.app.payload.response.SuccessAPIResponse;
 import com.app.repository.ViewRepository;
 import com.app.service.ViewServices;
-import com.app.speficication.VehicalSpecification;
 import com.app.speficication.ViewSpecification;
 import com.app.utils.PageUtils;
 import com.app.utils.RequestParamsUtils;
@@ -33,5 +32,34 @@ public class ViewServicesImpl implements ViewServices {
         Pageable pageable = requestParamsUtils.getPageable(viewQueryParam);
         Page<View> response = viewRepository.findAll(spec, pageable);
         return new APIResponse(PageUtils.toPageResponse(response));
+    }
+    @Override
+    public APIResponse create(View view) {
+        view = viewRepository.save(view);
+        return new SuccessAPIResponse(view);
+    }
+
+    @Override
+    public APIResponse update(View view) {
+        if(view == null){
+            return  new FailureAPIResponse("View id is required!");
+        }
+        View exists = viewRepository.findById(view.getId()).orElse(null);
+        if(exists == null){
+            return  new FailureAPIResponse("Cannot find View with id: "+view.getId());
+        }
+        view = viewRepository.save(view);
+        return new SuccessAPIResponse(view);
+    }
+
+
+    @Override
+    public APIResponse delete(Integer id) {
+        try {
+            viewRepository.deleteById(id);
+            return new SuccessAPIResponse("Delete successfully!");
+        } catch (Exception ex) {
+            return new FailureAPIResponse(ex.getMessage());
+        }
     }
 }
