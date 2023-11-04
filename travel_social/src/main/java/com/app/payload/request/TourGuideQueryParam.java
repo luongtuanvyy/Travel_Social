@@ -9,7 +9,7 @@ public class TourGuideQueryParam extends BaseQueryRequest{
 
     Integer id;
 
-    String name;
+    String fullName;
 
 
 }

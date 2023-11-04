@@ -7,6 +7,6 @@ import lombok.Data;
 @Builder
 public class PlaceQueryParam extends BaseQueryRequest {
     Integer id;
-    String place_name;
-    String place_address;
+    String name;
+    String address;
 }

@@ -40,8 +40,8 @@ public class TourGuideSpecification {
         if (tourGuideQueryParam.getId() != null) {
             spec = spec.and(hasIdEqual(tourGuideQueryParam.getId()));
         }
-        if (tourGuideQueryParam.getName() != null) {
-            spec = spec.and(hasNameLike(tourGuideQueryParam.getName()));
+        if (tourGuideQueryParam.getFullName() != null) {
+            spec = spec.and(hasNameLike(tourGuideQueryParam.getFullName()));
         }
 
         return spec;

@@ -22,7 +22,7 @@ public class PlaceSpecification {
             String nameWithoutDiacritics = removeDiacritics(name);
             String nameUpperCase = nameWithoutDiacritics.toUpperCase();
             Predicate likePredicate = criteriaBuilder.like(
-                    criteriaBuilder.upper(root.get("place_name")),
+                    criteriaBuilder.upper(root.get("name")),
                     "%" + nameUpperCase + "%"
             );
             return likePredicate;
@@ -33,7 +33,7 @@ public class PlaceSpecification {
             String nameWithoutDiacritics = removeDiacritics(Address);
             String nameUpperCase = nameWithoutDiacritics.toUpperCase();
             Predicate likePredicate = criteriaBuilder.like(
-                    criteriaBuilder.upper(root.get("place_address")),
+                    criteriaBuilder.upper(root.get("address")),
                     "%" + nameUpperCase + "%"
             );
             return likePredicate;
@@ -49,11 +49,11 @@ public class PlaceSpecification {
         if (placeQueryParam.getId() != null) {
             spec = spec.and(hasIdEqual(placeQueryParam.getId()));
         }
-        if (placeQueryParam.getPlace_name() != null) {
-            spec = spec.and(hasNameLike(placeQueryParam.getPlace_name()));
+        if (placeQueryParam.getName() != null) {
+            spec = spec.and(hasNameLike(placeQueryParam.getName()));
         }
-        if (placeQueryParam.getPlace_address() != null) {
-            spec = spec.and(hasAddressLike(placeQueryParam.getPlace_address()));
+        if (placeQueryParam.getAddress() != null) {
+            spec = spec.and(hasAddressLike(placeQueryParam.getAddress()));
         }
         return spec;
     }

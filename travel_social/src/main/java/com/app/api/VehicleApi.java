@@ -22,19 +22,19 @@ public class VehicleApi {
         return ResponseEntity.ok(vehicalServices.filterVehicle(vehicalQueryParam));
     }
     @PostMapping("/vehicles")
-    public ResponseEntity<?> createHotel(@RequestPart(name = "vehicle") Vehicle vehicle,
+    public ResponseEntity<?> createVehicle(@RequestPart(name = "vehicle") Vehicle vehicle,
                                          @RequestPart(name="image") @Nullable MultipartFile image){
         APIResponse response = vehicalServices.create(vehicle,image);
         return ResponseEntity.ok().body(response);
     }
     @PutMapping("/vehicles")
-    public ResponseEntity<?> updateHotel(@RequestPart(name = "vehicle") Vehicle vehicle,
+    public ResponseEntity<?> updateVehicle(@RequestPart(name = "vehicle") Vehicle vehicle,
                                          @RequestPart(name="image") @Nullable MultipartFile image){
         APIResponse response = vehicalServices.update(vehicle, image);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     @DeleteMapping("/vehicles")
-    public ResponseEntity<?> deleteHotel(@RequestParam("id") Integer id){
+    public ResponseEntity<?> deleteVehicle(@RequestParam("id") Integer id){
         APIResponse response = vehicalServices.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }

@@ -20,23 +20,23 @@ public class TourGuideApi {
     TourGuideServices tourGuideServices;
 
     @GetMapping("/tourguides/filter")
-    public ResponseEntity<?> getAllHotel (TourGuideQueryParam hotelQueryParam) {
+    public ResponseEntity<?> getAllTourGuide (TourGuideQueryParam hotelQueryParam) {
         return ResponseEntity.ok(tourGuideServices.filterTourGuide(hotelQueryParam));
     }
     @PostMapping("/tourguides")
-    public ResponseEntity<?> createHotel(@RequestPart(name = "tuorGuide") TourGuide tourGuide,
+    public ResponseEntity<?> createTourGuide(@RequestPart(name = "tuorGuide") TourGuide tourGuide,
                                          @RequestPart(name="image") @Nullable MultipartFile image){
         APIResponse response = tourGuideServices.create(tourGuide,image);
         return ResponseEntity.ok().body(response);
     }
     @PutMapping("/tourguides")
-    public ResponseEntity<?> updateHotel(@RequestPart(name = "tuorGuide") TourGuide tourGuide,
+    public ResponseEntity<?> updateTourGuide(@RequestPart(name = "tuorGuide") TourGuide tourGuide,
                                          @RequestPart(name="image") @Nullable MultipartFile image){
         APIResponse response = tourGuideServices.update(tourGuide, image);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     @DeleteMapping("/tourguides")
-    public ResponseEntity<?> deleteHotel(@RequestParam("id") Integer id){
+    public ResponseEntity<?> deleteTourGuide(@RequestParam("id") Integer id){
         APIResponse response = tourGuideServices.delete(id);
         return ResponseEntity.status(HttpStatus.OK).body(response);
     }
